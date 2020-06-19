@@ -6,6 +6,8 @@ const config = require('config');
 
 const auth = require('../../middleware/auth');
 
+//@todo: replace request with axios
+
 // @route    POST api/search
 // @desc     Get search result from TMDB
 // @access   Private

@@ -53,6 +53,15 @@ router.post(
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
+      if (!user.verified) {
+        return (
+          res
+            .status(400)
+            //@todo: add link to resend verification link
+            .json({ errors: [{ msg: 'Please verify your email to login' }] })
+        );
+      }
+
       const payload = {
         user: {
           id: user.id,
