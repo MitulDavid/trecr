@@ -1,0 +1,87 @@
+.signup-container {
+  display: grid;
+  grid-template-rows: 20vh 80vh;
+}
+
+.ub-topbar {
+  grid-area: 1/1/2/2;
+}
+
+.ub-logo {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 3.313rem;
+  line-height: 3.313rem;
+  color: var(--primary-red);
+  margin: 25px 0 0 6.67vw;
+}
+
+.ub-logo-tag {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.813rem;
+  line-height: 0.813rem;
+  letter-spacing: -0.04rem;
+  color: #858585;
+  margin: 0 0 0 6.67vw;
+}
+
+.login-form {
+  grid-area: 2/1/3/2;
+  margin: 0 6.67vw;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-heading {
+  font-weight: 700;
+  font-size: 2.063rem;
+  line-height: 2.063rem;
+  letter-spacing: -0.1rem;
+  margin: 0 0 15px 0;
+}
+.form-label {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.063rem;
+  letter-spacing: -0.1rem;
+  margin: 0;
+}
+.form-input {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 0.813rem;
+  color: #9196a5;
+  width: 86.67vw;
+  height: 44.5px;
+  border: solid 1px #a6a6a6;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  padding: 5px 2.67vw;
+}
+
+.submit-btn {
+  font-weight: 700;
+  font-size: 1.063rem;
+  padding: 11px 2.67vw;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  width: 86.67vw;
+  cursor: pointer;
+  background: var(--primary-red);
+  color: white;
+  margin: 15px 0 0 0;
+}
+
+.switch-form {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.063rem;
+  margin: 13px 0 0 0;
+}
+
+.ub-image {
+  display: none;
+}
+@media only screen and (min-width: 769px) {
+}
