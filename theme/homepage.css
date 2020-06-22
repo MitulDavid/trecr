@@ -30,6 +30,7 @@
 
 .signup-btn {
   background: var(--primary-red);
+  border: solid 1px var(--primary-red);
   color: white;
   margin-bottom: 12.5px;
 }
@@ -141,7 +142,7 @@
     padding: 0.78vh 0; /*Height Issue? 8.5px*/
     width: fit-content;
     width: -moz-fit-content;
-    min-width: 8.9vw;
+    min-width: 8.8vw;
     background-size: 200% auto;
   }
   .login-btn {
