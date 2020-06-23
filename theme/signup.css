@@ -85,6 +85,16 @@
   display: none;
 }
 
+.frgt-pswrd {
+  text-align: right;
+  margin-bottom: 7px;
+  font-size: 0.813rem;
+}
+
+.frgt-pswrd-exp {
+  margin-bottom: 5px;
+}
+
 @media only screen and (min-width: 769px) {
   .signup-container {
     grid-template-columns: 1fr 1fr;
@@ -118,7 +128,7 @@
   .form-heading {
     font-size: 3.188rem;
     line-height: 3.188rem;
-    margin: 0 0 1.39vh 0; /*Height Issue? 15px*/
+    margin: 0 0 1.8vh 0; /*Height Issue? 15px*/
   }
   .form-label {
     font-size: 1.375rem;
@@ -158,6 +168,16 @@
     font-weight: 400;
     font-size: 1.375rem;
     margin: 1.2vh 0 0 0; /*Height Issue? 13px*/
+  }
+
+  .frgt-pswrd {
+    text-align: right;
+    margin-bottom: 0.75vh;
+    font-size: 0.9rem;
+  }
+
+  .frgt-pswrd-exp {
+    margin-bottom: 0.46vh;
   }
 
   .ub-image {
