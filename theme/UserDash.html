@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserRecList</title>
+    <link rel="stylesheet" href="root.css">
+    <link rel="stylesheet" href="userreclist.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&family=Source+Sans+Pro:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="user-rec-list">
+        <nav class="r-nav">
+            <div class="nav-logo">
+                <div class="nav-logo-title">trecr</div>
+                <div class="nav-logo-username">@mituldavid</div>
+            </div>
+
+            <!-- <div class="nav-menu">
+                <div class="nav-menu-btn nav-signup-btn"><a href="">SIGN UP</a></div>
+                <div class="nav-menu-btn nav-login-btn"><a href="">LOG IN</a></div>
+            </div> -->
+        </nav>
+        <div class="rec-case">
+            <div class="rec-showcase">
+                <div class="search-title">Add to your list<sup class="plus-icon">+</sup></div>
+                <div class="search-subtitle">search for movies or shows and add them to your list</div>
+                <form action="" class="search-form">
+                    <input type="text" name="search" required=true placeholder="Search">
+                    <span class="search-btn" onclick=""><img src="Assets/Icons/Search Icon.svg" alt="Search"></span>
+                </form>
+            </div>
+            <div class="rec-list">
+                <div class="rl-header">
+                    <div class="rl-heading">your.rec.list</div>
+                    <div class="rl-subheading">add or remove entries from your list</div>
+                </div>
+                <div class="rl-grid">
+                    <div class="rl-entry">
+                        <img src="https://image.tmdb.org/t/p/w154/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg" alt="Movie Poster"
+                            class="rl-poster">
+                        <div class="rl-greybox">
+                            <div class="rl-title">Spiderman Into the Spiderverse</div>
+                            <div class="rl-details">8.1 | English | Drama, Mystery, Sci-Fi | 10 November 2016
+                            </div>
+                        </div>
+                        <div class="rl-utility">
+                            <img class="rmv-entry" src="./Assets/Icons/Close Icon.svg" alt="Remove from list">
+                            <div class="dash-like">
+                                <svg class="dash-like-icon" xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-heart" width="44" height="44"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#E02F2F" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <path d="M12 20l-7 -7a4 4 0 0 1 6.5 -6a.9 .9 0 0 0 1 0a4 4 0 0 1 6.5 6l-7 7" />
+                                </svg>
+                                <div class="dash-like-count">123</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rl-entry">
+                        <img src="https://image.tmdb.org/t/p/w154/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg" alt="Movie Poster"
+                            class="rl-poster">
+                        <div class="rl-greybox">
+                            <div class="rl-title">Spiderman Into the Spiderverse</div>
+                            <div class="rl-details">8.1 | English | Drama, Mystery, Sci-Fi | 10 November 2016
+                            </div>
+                        </div>
+                        <div class="rl-utility">
+                            <img class="rmv-entry" src="./Assets/Icons/Close Icon.svg" alt="Remove from list">
+                            <div class="dash-like">
+                                <svg class="dash-like-icon" xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-heart" width="44" height="44"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#E02F2F" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <path d="M12 20l-7 -7a4 4 0 0 1 6.5 -6a.9 .9 0 0 0 1 0a4 4 0 0 1 6.5 6l-7 7" />
+                                </svg>
+                                <div class="dash-like-count">123</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rl-entry">
+                        <div class="rl-poster-placeholder"></div>
+                        <div class="add-entry-msg">
+                            <div class="ae-msg-main">Add a new entry</div>
+                            <div class="ae-msg-sub">Your list can hold upto 10 entries</div>
+                        </div>
+
+                        <div class="rl-utility">
+                            <img class="rmv-entry" src="./Assets/Icons/Add Icon.svg" alt="Remove from list">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
