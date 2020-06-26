@@ -164,14 +164,11 @@
   }
 
   .switch-form {
-    text-align: center;
-    font-weight: 400;
     font-size: 1.375rem;
     margin: 1.2vh 0 0 0; /*Height Issue? 13px*/
   }
 
   .frgt-pswrd {
-    text-align: right;
     margin-bottom: 0.75vh;
     font-size: 0.9rem;
   }

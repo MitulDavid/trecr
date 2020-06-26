@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserRecList</title>
+    <title>UserDash</title>
     <link rel="stylesheet" href="root.css">
     <link rel="stylesheet" href="userreclist.css">
     <link
@@ -33,6 +33,39 @@
                     <input type="text" name="search" required=true placeholder="Search">
                     <span class="search-btn" onclick=""><img src="Assets/Icons/Search Icon.svg" alt="Search"></span>
                 </form>
+                <div class="search-res-grid">
+                    <div class="clear-res">Clear Results</div>
+                    <div class="search-entry">
+                        <img src="https://image.tmdb.org/t/p/w154/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg" alt="Movie Poster"
+                            class="rl-poster">
+                        <div class="s-greybox">
+                            <div class="rl-title s-title">Arrival</div>
+                            <div class="rl-details s-details">8.1 | English | Drama, Mystery, Sci-Fi | 10 November 2016
+                            </div>
+                        </div>
+                        <div class="s-utility">
+                            <img class="s-add-icon" src="./Assets/Icons/Red Add Icon.svg" alt="Add to list">
+                        </div>
+                    </div>
+                    <div class="search-entry">
+                        <img src="https://image.tmdb.org/t/p/w154/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg" alt="Movie Poster"
+                            class="rl-poster">
+                        <div class="s-greybox">
+                            <div class="rl-title s-title">Spiderman Into the Spiderverse</div>
+                            <div class="rl-details s-details">8.1 | English | Drama, Mystery, Sci-Fi | 10 November 2016
+                            </div>
+                        </div>
+                        <div class="s-utility">
+                            <img class="s-add-icon" src="./Assets/Icons/Red Add Icon.svg" alt="Add to list">
+                        </div>
+                    </div>
+                    <div class="search-entry">
+                        <div class="s-greybox no-results">
+                            <div class="rl-title s-title no-results-title">No Results Found</div>
+                            <div class="rl-details s-details no-results-details">Please try another search query</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="rec-list">
                 <div class="rl-header">
@@ -92,7 +125,7 @@
                         </div>
 
                         <div class="rl-utility">
-                            <img class="rmv-entry" src="./Assets/Icons/Add Icon.svg" alt="Remove from list">
+                            <img class="rmv-entry" src="./Assets/Icons/Add Icon.svg" alt="Add to list">
                         </div>
                     </div>
 
