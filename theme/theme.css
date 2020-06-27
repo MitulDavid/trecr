@@ -9,17 +9,6 @@
   padding: 0;
   -webkit-tap-highlight-color: transparent;
 }
-
-/*Toast Notificaiton Customizations Start*/
-.react-toast-notifications__container {
-  overflow-y: hidden !important;
-}
-
-.react-toast-notifications__toast__content {
-  font-family: 'Montserrat', sans-serif;
-}
-/*Toast Notificaiton Customizations End*/
-
 body {
   margin: 0;
   padding: 0;
@@ -30,7 +19,6 @@ a {
   color: inherit;
 }
 
-/* homepage.css starts */
 .home-container {
   display: grid;
   grid-template-rows: auto;
@@ -153,9 +141,7 @@ a {
   position: relative;
   left: -2vw;
 }
-/* homepage.css ends */
 
-/* signup.css starts */
 .signup-container {
   display: grid;
   grid-template-rows: 20vh 80vh;
@@ -252,9 +238,7 @@ a {
 .frgt-pswrd-exp {
   margin-bottom: 5px;
 }
-/* signup.css ends */
 
-/* userreclist.css starts */
 .user-rec-list {
   display: grid;
   font-family: 'Montserrat', sans-serif;
@@ -609,7 +593,6 @@ a {
   width: 80vw;
   margin: 0;
 }
-/* userreclist.css ends*/
 
 @media only screen and (min-width: 769px) {
   :root {
@@ -618,7 +601,6 @@ a {
     font-size: calc(7px + 7 * ((100vw - 769px) / 1151));
   }
 
-  /* homepage.css starts */
   .home-container {
     grid-template-columns: 28.8vw 1fr;
     grid-template-rows: auto auto;
@@ -713,8 +695,7 @@ a {
     position: relative;
     /* left: 1.56vw; */
   }
-  /* homepage.css ends*/
-  /* signup.css starts */
+
   .signup-container {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 32.5vh 67.5vh;
@@ -807,8 +788,6 @@ a {
     position: relative;
     left: 3.75vw;
   }
-  /* signup.css ends*/
-  /* userreclist.css starts */
   .r-nav {
     padding: 2.8vh 0 0 2.55vw; /*Height Issue?40px*/
   }
@@ -1097,5 +1076,4 @@ a {
   .no-results-details {
     width: 17vw;
   }
-  /* userreclist.css ends*/
 }
