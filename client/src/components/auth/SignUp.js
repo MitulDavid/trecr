@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useToasts } from 'react-toast-notifications';
-
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { register } from '../../actions/auth';
+import { toast } from 'react-toastify';
 import UserBoardingImg from '../assets/UserBoardingImg.png';
-const SignUp = () => {
+import PropTypes from 'prop-types';
+
+const SignUp = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -12,19 +15,23 @@ const SignUp = () => {
   });
 
   const { username, email, password, repassword } = formData;
-  const { addToast } = useToasts();
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = (e) => {
     e.preventDefault();
     if (password !== repassword) {
-      addToast('Passwords do not match', { appearance: 'error' });
+      toast.error('Passwords do not match');
     } else {
-      console.log(formData);
-      //@todo: add action
+      register({ username, email, password });
     }
   };
+
+  //Redirect if Logged In
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
+
   return (
     <div className='signup-container'>
       <div className='ub-topbar'>
@@ -43,7 +50,7 @@ const SignUp = () => {
             type='text'
             required={true}
             name='username'
-            placeholder='Letters, numbers and underscore'
+            placeholder='Letters, numbers and underscore may be used'
             value={username}
             onChange={(e) => onChange(e)}
           />
@@ -56,7 +63,7 @@ const SignUp = () => {
             type='email'
             required={true}
             name='email'
-            placeholder='johndoe@gmail.com'
+            placeholder='Enter your email id'
             value={email}
             onChange={(e) => onChange(e)}
           />
@@ -68,6 +75,7 @@ const SignUp = () => {
             className='form-input'
             type='password'
             required={true}
+            minLength='6'
             name='password'
             placeholder='Must contain atleast 6 characters'
             value={password}
@@ -102,4 +110,13 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+SignUp.propTypes = {
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { register })(SignUp);

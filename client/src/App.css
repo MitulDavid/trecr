@@ -11,12 +11,20 @@
 }
 
 /*Toast Notificaiton Customizations Start*/
-.react-toast-notifications__container {
-  overflow-y: hidden !important;
+.Toastify__toast {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border-radius: 7px;
+}
+.Toastify__progress-bar {
+  bottom: -1px;
+  height: 6px;
 }
 
-.react-toast-notifications__toast__content {
-  font-family: 'Montserrat', sans-serif;
+@media only screen and (max-width: 480px) {
+  .Toastify__toast {
+    border-radius: 0px;
+  }
 }
 /*Toast Notificaiton Customizations End*/
 

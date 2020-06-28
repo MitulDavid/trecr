@@ -1,0 +1,89 @@
+.menuIcon {
+  width: 35px;
+  height: 35px;
+  margin-right: 4vw;
+}
+
+.menu-item {
+  display: flex !important;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1.4rem;
+  color: white;
+  padding: 20px 0;
+}
+
+.menu-item:hover {
+  color: var(--primary-red);
+}
+
+.bm-burger-button {
+  position: absolute;
+  width: 36px;
+  height: 25px;
+  left: calc(96vw - 36px);
+  top: 40px;
+}
+
+.bm-burger-button button:focus {
+  outline: none;
+}
+
+.bm-burger-bars {
+  background: #373a47;
+  border-radius: 7px;
+}
+
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+.bm-cross-button {
+  height: 20px !important;
+  width: 20px !important;
+  right: 20px !important;
+  top: 20px !important;
+}
+
+.bm-cross-button button:focus {
+  outline: none;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+.bm-menu {
+  background: #2d2d2d;
+  padding: 3em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-item {
+  display: inline-block;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (min-width: 769px) {
+  .menuIcon {
+    width: 1.8vw;
+    height: 1.8vw;
+    margin-right: 1vw;
+  }
+
+  .menu-item {
+    line-height: 1.8rem;
+    padding: 1.85vh 0;
+  }
+
+  .bm-menu {
+    background: #2d2d2d;
+    padding: 3em 1.5em 0;
+    font-size: 1.55em;
+  }
+}
