@@ -51,7 +51,7 @@ const SignUp = ({ register, isAuthenticated }) => {
             required={true}
             name='username'
             placeholder='Letters, numbers and underscore may be used'
-            value={username}
+            value={username.toLowerCase()}
             onChange={(e) => onChange(e)}
           />
         </div>

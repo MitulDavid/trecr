@@ -15,7 +15,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     const reclist = await RecList.findOne({
       user_id: req.user.id,
-    }).populate('user', ['username']);
+    }).populate('user_id', ['username']); /*Modified user to user_id */
 
     if (!reclist) {
       return res
@@ -36,7 +36,7 @@ router.get('/user/:user_id', async (req, res) => {
   try {
     const reclist = await RecList.findOne({
       user_id: req.params.user_id,
-    }).populate('user', ['username']);
+    }).populate('user_id', ['username']); /*Modified user to user_id */
 
     if (!reclist)
       return res

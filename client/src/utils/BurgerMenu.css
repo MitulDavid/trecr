@@ -18,6 +18,33 @@
   color: var(--primary-red);
 }
 
+.menu-item:focus {
+  outline: none;
+}
+
+.cta {
+  padding: 10px 0;
+}
+.menu-item-cta {
+  border-radius: 18px;
+  padding: 6px 8.27vw;
+  text-align: center;
+  font-size: 1.3rem;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  font-family: 'Source Sans Pro', sans-serif;
+  width: 40%;
+}
+
+.login-cta {
+  background: #ffffff;
+  color: #656565;
+}
+.signup-cta {
+  background: var(--primary-red);
+  color: white;
+}
+
 .bm-burger-button {
   position: absolute;
   width: 36px;
@@ -85,5 +112,31 @@
     background: #2d2d2d;
     padding: 3em 1.5em 0;
     font-size: 1.55em;
+  }
+
+  .cta {
+    padding: 1.5vh 0;
+  }
+  .menu-item-cta {
+    border-radius: 25px;
+    padding: 1vh 2.5vw;
+    font-size: 1.688rem;
+    width: 30%;
+    background-size: 200% auto;
+    transition: 0.5s;
+  }
+  .menu-item-cta:hover {
+    background-position: right center;
+  }
+  .login-cta {
+    background-image: linear-gradient(to right, #fff 0%, #fff 51%, #ccc 100%);
+  }
+  .signup-cta {
+    background-image: linear-gradient(
+      to right,
+      var(--primary-red) 0%,
+      var(--primary-red) 51%,
+      #800000 100%
+    );
   }
 }

@@ -568,6 +568,7 @@ a {
   text-align: center;
   border-radius: 7px;
   padding: 8px 0; /**/
+  cursor: pointer;
 }
 
 .search-entry {
@@ -618,6 +619,86 @@ a {
   margin: 0;
 }
 /* userreclist.css ends*/
+
+/*Spinner Code*/
+.orbit-spinner,
+.orbit-spinner * {
+  box-sizing: border-box;
+}
+.spinner-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-res-spinner {
+  margin: auto;
+  padding: 30px;
+}
+
+.orbit-spinner {
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  perspective: 800px;
+}
+
+.orbit-spinner .orbit {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.orbit-spinner .orbit:nth-child(1) {
+  left: 0%;
+  top: 0%;
+  animation: orbit-spinner-orbit-one-animation 1200ms linear infinite;
+  border-bottom: 3px solid #ff1d5e;
+}
+
+.orbit-spinner .orbit:nth-child(2) {
+  right: 0%;
+  top: 0%;
+  animation: orbit-spinner-orbit-two-animation 1200ms linear infinite;
+  border-right: 3px solid #ff1d5e;
+}
+
+.orbit-spinner .orbit:nth-child(3) {
+  right: 0%;
+  bottom: 0%;
+  animation: orbit-spinner-orbit-three-animation 1200ms linear infinite;
+  border-top: 3px solid #ff1d5e;
+}
+
+@keyframes orbit-spinner-orbit-one-animation {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbit-spinner-orbit-two-animation {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbit-spinner-orbit-three-animation {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+/*Spinner Code Ends*/
 
 @media only screen and (min-width: 769px) {
   :root {
@@ -1106,4 +1187,10 @@ a {
     width: 17vw;
   }
   /* userreclist.css ends*/
+
+  /*Spinner CSS*/
+  .search-res-spinner {
+    margin: 0;
+    padding: 3.69vh calc(10.86vw - 32.5px);
+  }
 }

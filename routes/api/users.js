@@ -28,7 +28,10 @@ router.post(
       .isLength({
         max: 20,
       })
-      .trim(),
+      .trim()
+      .customSanitizer((value) => {
+        return value.toLowerCase();
+      }),
     check(
       'username',
       'Username must contain only letters, numbers, underscores.'

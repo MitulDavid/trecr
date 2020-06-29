@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const request = require('request');
+const axios = require('axios');
 const { check, validationResult } = require('express-validator');
 const config = require('config');
 
 const auth = require('../../middleware/auth');
-
-//@todo: replace request with axios
 
 // @route    POST api/search
 // @desc     Get search result from TMDB
@@ -15,9 +13,9 @@ router.post(
   '/',
   [
     auth,
-    [check('query', 'The search query is required').not().isEmpty().trim()],
+    [check('query', 'Search query cannot be empty').not().isEmpty().trim()],
   ],
-  (req, res) => {
+  async (req, res) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -26,30 +24,25 @@ router.post(
 
       const { query } = req.body;
 
-      const options = {
-        uri: `https://api.themoviedb.org/3/search/multi?api_key=${config.get(
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/multi?api_key=${config.get(
           'tmdbKey'
-        )}&language=en-US&query=${encodeURI(query)}&page=1&include_adult=false`,
-        method: 'GET',
-      };
+        )}&language=en-US&query=${encodeURI(query)}&page=1&include_adult=false`
+      );
 
-      request(options, (error, response, body) => {
-        if (error) console.error(error);
+      if (response.data.total_results <= 0) {
+        return res.status(404).json({ msg: 'No results found' });
+      }
 
-        if (response.statusCode !== 200) {
-          return res.status(404).json({ msg: 'No data found' });
-        }
-
-        res.json(
-          JSON.parse(body).results.sort(function (a, b) {
-            var keyA = a.popularity,
-              keyB = b.popularity;
-            if (keyA < keyB) return 1;
-            if (keyA > keyB) return -1;
-            return 0;
-          })
-        );
-      });
+      res.json(
+        response.data.results.sort(function (a, b) {
+          var keyA = a.popularity,
+            keyB = b.popularity;
+          if (keyA < keyB) return 1;
+          if (keyA > keyB) return -1;
+          return 0;
+        })
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');

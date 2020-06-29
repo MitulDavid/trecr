@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_RECLIST,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -76,6 +77,7 @@ export const login = (email, password) => async (dispatch) => {
     dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
+    console.log(err);
     if (errors) {
       errors.forEach((error) => {
         toast.error(error.msg);
@@ -89,5 +91,6 @@ export const login = (email, password) => async (dispatch) => {
 
 //Logout
 export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_RECLIST });
   dispatch({ type: LOGOUT });
 };

@@ -1,16 +1,21 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../layout/Navbar';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import NavMenu from '../layout/NavMenu';
 import PinIcon from '../assets/Icons/PinIcon.svg';
 
-const PublicRecList = () => {
+const PublicRecList = ({ isAuthenticated }) => {
   return (
     <Fragment>
-      <Navbar />
+      <NavMenu />
       <div className='user-rec-list'>
         <nav className='r-nav'>
           <div className='nav-logo'>
-            <div className='nav-logo-title'>trecr</div>
+            <Link to='/' className='nav-logo-title'>
+              trecr
+            </Link>
             <div className='nav-logo-username'>@mituldavid</div>
           </div>
 
@@ -139,4 +144,12 @@ const PublicRecList = () => {
   );
 };
 
-export default PublicRecList;
+PublicRecList.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(PublicRecList);
