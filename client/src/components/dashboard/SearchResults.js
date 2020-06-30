@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Fragment } from 'react';
 import { clearSearchResults } from '../../actions/search';
+import { addToReclist } from '../../actions/reclist';
+import { GName } from '../../utils/GenreArray';
+import { LName } from '../../utils/LangArray';
+import moment from 'moment';
 import RedAddIcon from '../assets/Icons/RedAddIcon.svg';
 import Spinner from '../layout/Spinner';
 import NoPosterFound from '../assets/NoPosterFound.png';
@@ -10,9 +14,12 @@ import NoPosterFound from '../assets/NoPosterFound.png';
 const SearchResults = ({
   clearSearchResults,
   search: { results, loading, error },
+  addToReclist,
 }) => {
   const onClick = (e) => clearSearchResults();
+  const onClickAdd = (media_type, id) => addToReclist(media_type, id);
   if (
+    !loading &&
     results === null &&
     Object.keys(error).length === 0 &&
     error.constructor === Object
@@ -43,16 +50,27 @@ const SearchResults = ({
                 {sres.media_type === 'movie' ? sres.title : sres.name}
               </div>
               <div className='rl-details s-details'>
-                {sres.vote_average} | {sres.original_language} |{' '}
-                {sres.media_type} |{' '}
+                &#128970; {sres.vote_average} | {LName[sres.original_language]}{' '}
+                |{' '}
                 {sres.media_type === 'movie'
-                  ? sres.release_date
-                  : sres.first_air_date}{' '}
-                | {sres.overview}
+                  ? sres.genre_ids.map((gid) => GName.movie[gid]).join(', ')
+                  : sres.genre_ids.map((gid) => GName.tv[gid]).join(', ')}{' '}
+                |{' '}
+                {moment(
+                  sres.media_type === 'movie'
+                    ? sres.release_date
+                    : sres.first_air_date,
+                  'YYYY-MM-DD'
+                ).format('DD MMM YYYY')}
               </div>
             </div>
             <div className='s-utility'>
-              <img className='s-add-icon' src={RedAddIcon} alt='Add to list' />
+              <img
+                className='s-add-icon'
+                src={RedAddIcon}
+                alt='Add to list'
+                onClick={() => onClickAdd(sres.media_type, sres.id)}
+              />
             </div>
           </div>
         )
@@ -89,10 +107,13 @@ const SearchResults = ({
 SearchResults.propTypes = {
   search: PropTypes.object.isRequired,
   clearSearchResults: PropTypes.func.isRequired,
+  addToReclist: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   search: state.search,
 });
 
-export default connect(mapStateToProps, { clearSearchResults })(SearchResults);
+export default connect(mapStateToProps, { clearSearchResults, addToReclist })(
+  SearchResults
+);

@@ -18,9 +18,9 @@ router.get('/me', auth, async (req, res) => {
     }).populate('user_id', ['username']); /*Modified user to user_id */
 
     if (!reclist) {
-      return res
-        .status(400)
-        .json({ msg: 'This user does not have any recommendations' });
+      return res.status(400).json({
+        errors: [{ msg: 'This user does not have any recommendations' }],
+      });
     }
     res.json(reclist);
   } catch (err) {
@@ -39,17 +39,17 @@ router.get('/user/:user_id', async (req, res) => {
     }).populate('user_id', ['username']); /*Modified user to user_id */
 
     if (!reclist)
-      return res
-        .status(400)
-        .json({ msg: 'This user does not have any recommendations' });
+      return res.status(400).json({
+        errors: [{ msg: 'This user does not have any recommendations' }],
+      });
 
     res.json(reclist);
   } catch (err) {
     console.error(err.message);
     if (err.kind == 'ObjectId') {
-      return res
-        .status(400)
-        .json({ msg: 'This user does not have any recommendations' });
+      return res.status(400).json({
+        errors: [{ msg: 'This user does not have any recommendations' }],
+      });
     }
     res.status(500).send('Server Error');
   }
@@ -98,17 +98,21 @@ router.post('/:mediaType/:id', auth, async (req, res) => {
 
     if (reclist.r_list.length >= 10) {
       return res.status(400).json({
-        msg:
-          'The list already has 10 entries. Please delete an entry to add a new one',
+        errors: [
+          {
+            msg:
+              'The list already has 10 entries. Please delete an entry to add a new one',
+          },
+        ],
       });
     }
     const checkRep = reclist.r_list.filter(
       (r_ele) => r_ele.title === rl_entry.title
     );
     if (checkRep.length > 0) {
-      return res
-        .status(400)
-        .json({ msg: 'That entry already exists in the list' });
+      return res.status(400).json({
+        errors: [{ msg: 'That entry already exists in the list' }],
+      });
     }
 
     reclist.r_list.push(rl_entry);
