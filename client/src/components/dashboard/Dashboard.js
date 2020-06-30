@@ -5,6 +5,7 @@ import Spinner from '../layout/Spinner';
 import NavMenu from '../layout/NavMenu';
 import SearchEntry from './SearchEntry';
 import SearchResults from './SearchResults';
+import DashRecList from './DashRecList';
 import { getCurrentReclist } from '../../actions/reclist';
 
 const Dashboard = ({
@@ -37,11 +38,15 @@ const Dashboard = ({
             </div>
           </div>
           <div className='rec-list'>
-            {reclist !== null ? (
-              <Fragment>Has</Fragment>
-            ) : (
-              <Fragment>HasNot</Fragment>
-            )}
+            <div className='rl-header'>
+              <div className='rl-heading'>your.rec.list</div>
+              <div className='rl-subheading'>
+                add or remove entries from your list
+              </div>
+            </div>
+            <div className='rl-grid'>
+              <DashRecList />
+            </div>
           </div>
         </div>
       </div>
