@@ -1,7 +1,13 @@
-import { GET_RECLIST, RECLIST_ERROR, CLEAR_RECLIST } from '../actions/types';
+import {
+  GET_RECLIST,
+  GET_VIEWLIST,
+  RECLIST_ERROR,
+  CLEAR_RECLIST,
+} from '../actions/types';
 
 const initialState = {
   reclist: null,
+  viewlist: null,
   loading: true,
   error: {},
 };
@@ -15,6 +21,12 @@ export default function (state = initialState, action) {
         reclist: payload,
         loading: false,
       };
+    case GET_VIEWLIST:
+      return {
+        ...state,
+        viewlist: payload,
+        loading: false,
+      };
     case RECLIST_ERROR:
       return {
         ...state,
@@ -25,6 +37,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         reclist: null,
+        viewlist: null,
         error: null,
         loading: false,
       };

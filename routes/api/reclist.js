@@ -19,7 +19,7 @@ router.get('/me', auth, async (req, res) => {
 
     if (!reclist) {
       return res.status(400).json({
-        errors: [{ msg: 'This user does not have any recommendations' }],
+        msg: 'This user does not have any recommendations',
       });
     }
     res.json(reclist);
@@ -36,6 +36,41 @@ router.get('/user/:user_id', async (req, res) => {
   try {
     const reclist = await RecList.findOne({
       user_id: req.params.user_id,
+    }).populate('user_id', ['username']); /*Modified user to user_id */
+
+    if (!reclist)
+      return res.status(400).json({
+        errors: [{ msg: 'This user does not have any recommendations' }],
+      });
+
+    res.json(reclist);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == 'ObjectId') {
+      return res.status(400).json({
+        errors: [{ msg: 'This user does not have any recommendations' }],
+      });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    GET api/reclist/:username
+// @desc     Get reclist by username
+// @access   Public
+router.get('/:username', async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username }).select(
+      '_id'
+    );
+
+    if (!user)
+      return res.status(400).json({
+        errors: [{ msg: 'This user does not exist' }],
+      });
+
+    const reclist = await RecList.findOne({
+      user_id: user._id,
     }).populate('user_id', ['username']); /*Modified user to user_id */
 
     if (!reclist)
@@ -138,7 +173,9 @@ router.delete('/item/:r_item_id', auth, async (req, res) => {
     );
     //Ensure entry exists
     if (!r_item) {
-      return res.status(404).json({ msg: 'Entry does not exist' });
+      return res.status(404).json({
+        errors: [{ msg: 'Entry does not exist' }],
+      });
     }
 
     const removeIndex = reclist.r_list
@@ -146,9 +183,7 @@ router.delete('/item/:r_item_id', auth, async (req, res) => {
       .indexOf(req.params.r_item_id);
 
     reclist.r_list.splice(removeIndex, 1);
-
     await reclist.save();
-
     res.json(reclist);
   } catch (err) {
     console.error(err.message);

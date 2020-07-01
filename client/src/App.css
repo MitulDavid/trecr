@@ -310,6 +310,11 @@ a {
 .rs-title {
   font-weight: 700;
   font-size: 1.875rem;
+  width: 70.67vw;
+  max-width: 35vh;
+  line-height: 1.9rem;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .rs-details {
@@ -936,6 +941,9 @@ a {
     font-size: 3.625rem;
     line-height: 3.625rem;
     margin-bottom: 1vh;
+    max-width: 33vh;
+    width: 20.94vw;
+    text-align: unset;
   }
 
   .rs-details {

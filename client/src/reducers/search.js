@@ -2,7 +2,6 @@ import {
   SEARCH_ACTIVE,
   GET_SEARCH_RES,
   SEARCH_ERROR,
-  CLEAR_RECLIST,
   CLEAR_SEARCH_RES,
 } from '../actions/types';
 

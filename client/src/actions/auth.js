@@ -9,6 +9,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_RECLIST,
+  CLEAR_SEARCH_RES,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -92,5 +93,6 @@ export const login = (email, password) => async (dispatch) => {
 //Logout
 export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_RECLIST });
+  dispatch({ type: CLEAR_SEARCH_RES });
   dispatch({ type: LOGOUT });
 };

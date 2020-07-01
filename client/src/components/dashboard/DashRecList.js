@@ -4,12 +4,18 @@ import { connect } from 'react-redux';
 import { Fragment } from 'react';
 import { LName } from '../../utils/LangArray';
 import moment from 'moment';
+import { removeRecEntry } from '../../actions/reclist';
 import NoPosterFound from '../assets/NoPosterFound.png';
 import CloseIcon from '../assets/Icons/CloseIcon.svg';
 import AddIcon from '../assets/Icons/AddIcon.svg';
 
-const DashRecList = ({ reclist }) => {
-  if (reclist.reclist !== null && reclist.reclist.r_list !== null) {
+const DashRecList = ({ reclist, removeRecEntry }) => {
+  const onClick = (r_item_id) => removeRecEntry(r_item_id);
+  if (
+    reclist.reclist !== null &&
+    reclist.reclist.r_list !== null &&
+    reclist.reclist.r_list.length > 0
+  ) {
     const rec_entries = reclist.reclist.r_list.map((re) => {
       const dashlikes =
         re.likes.length > 0 ? (
@@ -35,7 +41,7 @@ const DashRecList = ({ reclist }) => {
           ''
         );
       return (
-        <div className='rl-entry' key={re.id}>
+        <div className='rl-entry' key={re._id}>
           <img
             src={`https://image.tmdb.org/t/p/w154/${re.poster_path}`}
             alt='Movie Poster'
@@ -54,7 +60,13 @@ const DashRecList = ({ reclist }) => {
             </div>
           </div>
           <div className='rl-utility'>
-            <img className='rmv-entry' src={CloseIcon} alt='Remove from list' />
+            <img
+              className='rmv-entry'
+              src={CloseIcon}
+              alt='Remove from list'
+              onClick={() => onClick(re._id)}
+            />
+            {dashlikes}
           </div>
         </div>
       );
@@ -81,10 +93,11 @@ const DashRecList = ({ reclist }) => {
 
 DashRecList.propTypes = {
   reclist: PropTypes.object.isRequired,
+  removeRecEntry: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reclist: state.reclist,
 });
 
-export default connect(mapStateToProps)(DashRecList);
+export default connect(mapStateToProps, { removeRecEntry })(DashRecList);

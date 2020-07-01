@@ -9,6 +9,7 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const GET_RECLIST = 'GET_RECLIST';
 export const RECLIST_ERROR = 'RECLIST_ERROR';
 export const CLEAR_RECLIST = 'CLEAR_RECLIST';
+export const GET_VIEWLIST = 'GET_VIEWLIST';
 
 export const SEARCH_ACTIVE = 'SEARCH_ACTIVE';
 export const GET_SEARCH_RES = 'GET_SEARCH_RES';
