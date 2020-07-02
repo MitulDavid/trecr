@@ -15,3 +15,5 @@ export const SEARCH_ACTIVE = 'SEARCH_ACTIVE';
 export const GET_SEARCH_RES = 'GET_SEARCH_RES';
 export const SEARCH_ERROR = 'SEARCH_ERROR';
 export const CLEAR_SEARCH_RES = 'CLEAR_SEARCH_RES';
+
+export const UPDATE_LIKES = 'UPDATE_LIKES';

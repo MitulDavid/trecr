@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { addLike, removeLike } from '../../actions/reclist';
 import { LName } from '../../utils/LangArray';
 import moment from 'moment';
 import NoPosterFound from '../assets/NoPosterFound.png';
 import { Fragment } from 'react';
 
-const PublicRecEntry = ({ reclist }) => {
+const PublicRecEntry = ({ reclist, addLike, removeLike }) => {
+  const updateLike = (reclist_id, rle_id) => {
+    addLike(reclist_id, rle_id);
+  };
+
   if (
     reclist.viewlist !== null &&
     reclist.viewlist.r_list !== null &&
@@ -33,7 +37,10 @@ const PublicRecEntry = ({ reclist }) => {
           </div>
         </div>
         <div className='rl-utility'>
-          <div className='rl-like'>
+          <div
+            className='rl-like'
+            onClick={(e) => updateLike(reclist.viewlist._id, rle._id)}
+          >
             <svg
               className='rl-like-icon'
               xmlns='http://www.w3.org/2000/svg'
@@ -62,10 +69,14 @@ const PublicRecEntry = ({ reclist }) => {
 
 PublicRecEntry.propTypes = {
   reclist: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reclist: state.reclist,
 });
 
-export default connect(mapStateToProps)(PublicRecEntry);
+export default connect(mapStateToProps, { addLike, removeLike })(
+  PublicRecEntry
+);

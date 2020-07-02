@@ -214,4 +214,69 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
+//@route  PUT api/reclist/like/:reclist_id/:entry_id
+//@desc   Like a reclist entry
+//@access Private
+router.put('/like/:reclist_id/:entry_id', auth, async (req, res) => {
+  try {
+    let likes = [];
+    let errors = [];
+    const reclist = await RecList.findById(req.params.reclist_id);
+    reclist.r_list.forEach((r_entry) => {
+      if (r_entry._id.toString() === req.params.entry_id) {
+        if (
+          r_entry.likes.filter((like) => like.user.toString() === req.user.id)
+            .length > 0
+        ) {
+          errors = [{ msg: 'Post has already been liked' }];
+        }
+        r_entry.likes.unshift({ user: req.user.id });
+        likes = r_entry.likes;
+      }
+    });
+    if (errors.length > 0) return res.status(400).json({ errors });
+    await reclist.save();
+    if (likes.length > 0) return res.json(likes);
+    else return res.status(500).send('Server Error');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+//@route  PUT api/reclist/unlike/:reclist_id/:entry_id
+//@desc   Unlike a reclist entry
+//@access Private
+router.put('/unlike/:reclist_id/:entry_id', auth, async (req, res) => {
+  try {
+    let likes = [];
+    let errors = [];
+    let flag = false;
+    const reclist = await RecList.findById(req.params.reclist_id);
+    reclist.r_list.forEach((r_entry) => {
+      if (r_entry._id.toString() === req.params.entry_id) {
+        if (
+          r_entry.likes.filter((like) => like.user.toString() === req.user.id)
+            .length <= 0
+        ) {
+          errors = [{ msg: 'Post has not yet been liked' }];
+        }
+        const removeIndex = r_entry.likes
+          .map((like) => like.user.toString())
+          .indexOf(req.user.id);
+        r_entry.likes.splice(removeIndex, 1);
+        likes = r_entry.likes;
+        flag = true;
+      }
+    });
+    if (errors.length > 0) return res.status(400).json({ errors });
+    await reclist.save();
+    if (flag) return res.json(likes);
+    else return res.status(500).send('Server Error');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

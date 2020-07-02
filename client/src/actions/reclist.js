@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GET_RECLIST, GET_VIEWLIST, RECLIST_ERROR } from './types';
+import {
+  GET_RECLIST,
+  GET_VIEWLIST,
+  RECLIST_ERROR,
+  UPDATE_LIKES,
+} from './types';
 import { toast } from 'react-toastify';
 
 //Get current user's reclist
@@ -118,5 +123,49 @@ export const getReclistByUsername = (username) => async (dispatch) => {
         payload: { msg: err.response.statusText, status: err.response.status },
       });
     }
+  }
+};
+
+//Like reclist entry
+export const addLike = (reclist_id, entry_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`api/reclist/like/${reclist_id}/${entry_id}`);
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { reclist_id, entry_id, likes: res.data },
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => {
+        toast.error(error.msg);
+      });
+    }
+    dispatch({
+      type: RECLIST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//Unlike reclist entry
+export const removeLike = (reclist_id, entry_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`api/reclist/unlike/${reclist_id}/${entry_id}`);
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { reclist_id, entry_id, likes: res.data },
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => {
+        toast.error(error.msg);
+      });
+    }
+    dispatch({
+      type: RECLIST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };
