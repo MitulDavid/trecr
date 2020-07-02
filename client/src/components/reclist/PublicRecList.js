@@ -35,8 +35,6 @@ const PublicRecList = ({
       </Fragment>
     );
   } else if (viewlist !== null) {
-    const randomEntry =
-      viewlist.r_list[Math.floor(Math.random() * viewlist.r_list.length)];
     return (
       <Fragment>
         <NavMenu />

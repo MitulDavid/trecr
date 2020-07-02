@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { LName } from '../../utils/LangArray';
@@ -6,8 +6,18 @@ import moment from 'moment';
 import NoPosterFound from '../assets/NoPosterFound.png';
 
 const PublicRecShow = ({ reclist: { loading, error, viewlist } }) => {
-  const randomEntry =
-    viewlist.r_list[Math.floor(Math.random() * viewlist.r_list.length)];
+  const [randEntry, setRandEntry] = useState({
+    randomEntry: viewlist.r_list[0],
+  });
+  useEffect(() => {
+    setRandEntry({
+      randomEntry:
+        viewlist.r_list[Math.floor(Math.random() * viewlist.r_list.length)],
+    });
+  }, []);
+  const { randomEntry } = randEntry;
+  // const randomEntry =
+  //   viewlist.r_list[Math.floor(Math.random() * viewlist.r_list.length)];
   return (
     <Fragment>
       <img
