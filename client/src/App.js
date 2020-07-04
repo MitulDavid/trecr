@@ -6,6 +6,8 @@ import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import PublicRecList from './components/reclist/PublicRecList';
 import PrivateRoute from './components/routing/PrivateRoute';
+import VerifyEmail from './components/layout/VerifyEmail';
+import ResendVerification from './components/auth/ResendVerification';
 //Toast
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -36,6 +38,8 @@ const App = () => {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/user/verify/:token' component={VerifyEmail} />
+            <Route exact path='/user/resend' component={ResendVerification} />
             <Route exact path='/:username' component={PublicRecList} />
           </Switch>
         </Fragment>

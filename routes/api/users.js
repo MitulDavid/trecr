@@ -95,9 +95,9 @@ router.post(
         (err, token) => {
           if (err) throw err;
           //@todo: change url to frontend route
-          const url = `http://localhost:5000/api/users/confirmation/${token}`; //Confirmation Link
+          const url = `http://localhost:3000/user/verify/${token}`; //Confirmation Link
           transporter.sendMail({
-            //@todo: from: no-reply@trecr.com
+            from: 'no-reply@trecr.com',
             to: email,
             subject: 'Welcome to trecr! Confirm your email',
             //@todo: CSS for email body
@@ -130,11 +130,11 @@ router.get('/confirmation/:token', async (req, res) => {
     }
     user.verified = true;
     await user.save();
-    return res.status(200).json({ msg: 'User Verified' });
+    return res.status(200).json({ errors: [{ msg: 'User Verified' }] });
   } catch (err) {
     if (err.message === 'invalid token') {
       ///@todo: on the frontend show resend verification link
-      return res.status(400).json({ msg: 'Invalid Token' });
+      return res.status(400).json({ errors: [{ msg: 'Invalid Token' }] });
     }
     res.status(500).send('Server Error');
   }
@@ -145,7 +145,7 @@ router.get('/confirmation/:token', async (req, res) => {
 //@access  Public
 router.post(
   '/resendverification',
-  [check('email', 'Not a valid email').isEmail().normalizeEmail()],
+  [check('email', 'Please enter a valid email').isEmail().normalizeEmail()],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -156,6 +156,15 @@ router.post(
       let user = await User.findOne({ email });
       if (!user) {
         return res.status(400).json({ errors: [{ msg: 'Invalid Email' }] });
+      }
+      if (user.verified === true) {
+        return res.status(400).json({
+          errors: [
+            {
+              msg: 'This user has already verified their email, please log in',
+            },
+          ],
+        });
       }
       const payload = {
         user: {
@@ -170,9 +179,9 @@ router.post(
         (err, token) => {
           if (err) throw err;
           //@todo: change url to frontend route
-          const url = `http://localhost:5000/api/users/confirmation/${token}`; //Confirmation Link
+          const url = `http://localhost:3000/user/verify/${token}`; //Confirmation Link
           transporter.sendMail({
-            //@todo: from: no-reply@trecr.com
+            from: 'no-reply@trecr.com',
             to: email,
             subject: 'Welcome to trecr! Confirm your email',
             //@todo: CSS for email body

@@ -38,7 +38,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         reclist: null,
-        viewlist: null,
         error: null,
         loading: false,
       };

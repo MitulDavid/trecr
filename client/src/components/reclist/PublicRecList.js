@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PublicRecEntry from './PublicRecEntry';
 import PublicRecShow from './PublicRecShow';
+import Spinner from '../layout/Spinner';
 
 import { getReclistByUsername } from '../../actions/reclist';
 import NavMenu from '../layout/NavMenu';
@@ -12,7 +13,6 @@ import PinIcon from '../assets/Icons/PinIcon.svg';
 const PublicRecList = ({
   match,
   getReclistByUsername,
-  reclist,
   reclist: { loading, error, viewlist },
 }) => {
   useEffect(() => {
@@ -20,16 +20,21 @@ const PublicRecList = ({
   }, []);
 
   if (loading && viewlist === null) {
-    return <Fragment>Spinner</Fragment>;
+    return (
+      <div className='spinner-container'>
+        <Spinner />
+      </div>
+    );
   } else if (
-    error.msg === 'This user does not have any recommendations' ||
-    error.msg === 'This user does not exist' ||
-    error.msg === 'Internal Server Error' ||
-    reclist === null /*Cheeky lil error causer*/ ||
+    // error.msg === 'This user does not have any recommendations' ||
+    // error.msg === 'This user does not exist' ||
+    // error.msg === 'Internal Server Error' ||
+    viewlist === null ||
     viewlist.r_list.length <= 0 ||
     viewlist.r_list === null
   ) {
     return (
+      //@todo: Add Page Design
       <Fragment>
         This user either doesnt exist or doesnt have any recs yet screen
       </Fragment>
@@ -72,6 +77,7 @@ const PublicRecList = ({
       </Fragment>
     );
   } else {
+    //@todo: Add Page Design
     return <Fragment>Error</Fragment>;
   }
 };

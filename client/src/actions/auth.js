@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {
@@ -47,6 +48,26 @@ export const register = ({ username, email, password }) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    toast.info(
+      <p>
+        A verification link has been sent to your email account, verify your
+        email to complete the sign-up process <br /> <br />
+        <a
+          href='/user/resend'
+          style={{
+            color: 'black',
+            background: 'white',
+            padding: '8px',
+            margin: '3px',
+            borderRadius: '5px',
+            fontWeight: '600',
+          }}
+        >
+          Resend Verification
+        </a>
+      </p>,
+      { autoClose: false }
+    );
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -81,7 +102,28 @@ export const login = (email, password) => async (dispatch) => {
     console.log(err);
     if (errors) {
       errors.forEach((error) => {
-        toast.error(error.msg);
+        //'Please verify your email to login' is what the api sends back, if the msg is changed in the api you have to change it here too
+        if (error.msg !== 'Please verify your email to login')
+          toast.error(error.msg);
+        else
+          toast.error(
+            <p>
+              Please verify your email to login. <br /> <br />
+              <a
+                href='/user/resend'
+                style={{
+                  color: 'black',
+                  background: 'white',
+                  padding: '8px',
+                  margin: '3px',
+                  borderRadius: '5px',
+                  fontWeight: '600',
+                }}
+              >
+                Resend Verification
+              </a>
+            </p>
+          );
       });
     }
     dispatch({

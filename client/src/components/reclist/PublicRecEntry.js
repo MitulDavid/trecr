@@ -6,9 +6,13 @@ import { LName } from '../../utils/LangArray';
 import moment from 'moment';
 import NoPosterFound from '../assets/NoPosterFound.png';
 import { Fragment } from 'react';
+import { toast } from 'react-toastify';
 
-const PublicRecEntry = ({ reclist, addLike, removeLike }) => {
-  const updateLike = (reclist_id, rle_id) => {
+const PublicRecEntry = ({ reclist, addLike, removeLike, auth }) => {
+  const rmvLike = (reclist_id, rle_id) => {
+    removeLike(reclist_id, rle_id);
+  };
+  const Like = (reclist_id, rle_id) => {
     addLike(reclist_id, rle_id);
   };
 
@@ -39,7 +43,14 @@ const PublicRecEntry = ({ reclist, addLike, removeLike }) => {
         <div className='rl-utility'>
           <div
             className='rl-like'
-            onClick={(e) => updateLike(reclist.viewlist._id, rle._id)}
+            onClick={(e) =>
+              auth.isAuthenticated
+                ? rle.likes.filter((like) => like.user === auth.user._id)
+                    .length > 0
+                  ? rmvLike(reclist.viewlist._id, rle._id)
+                  : Like(reclist.viewlist._id, rle._id)
+                : toast.error('Log in to like entries')
+            }
           >
             <svg
               className='rl-like-icon'
@@ -47,7 +58,14 @@ const PublicRecEntry = ({ reclist, addLike, removeLike }) => {
               width='44'
               height='44'
               viewBox='0 0 24 24'
-              strokeWidth='1.5'
+              strokeWidth={
+                auth.isAuthenticated
+                  ? rle.likes.filter((like) => like.user === auth.user._id)
+                      .length > 0
+                    ? '2.5'
+                    : '1.5'
+                  : '1.5'
+              }
               stroke='#E02F2F'
               fill='none'
               strokeLinecap='round'
@@ -71,10 +89,12 @@ PublicRecEntry.propTypes = {
   reclist: PropTypes.object.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reclist: state.reclist,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { addLike, removeLike })(
