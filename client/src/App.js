@@ -10,6 +10,8 @@ import VerifyEmail from './components/layout/VerifyEmail';
 import ResendVerification from './components/auth/ResendVerification';
 import ForgotPassword from './components/auth/ForgotPassword';
 import ResetPassword from './components/auth/ResetPassword';
+import ChangeUsername from './components/profile/ChangeUsername';
+import ChangePassword from './components/profile/ChangePassword';
 
 //Toast
 import { ToastContainer, Slide } from 'react-toastify';
@@ -41,6 +43,16 @@ const App = () => {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute
+              exact
+              path='/account/changeusername'
+              component={ChangeUsername}
+            />
+            <PrivateRoute
+              exact
+              path='/account/changepassword'
+              component={ChangePassword}
+            />
             <Route exact path='/user/verify/:token' component={VerifyEmail} />
             <Route exact path='/user/resend' component={ResendVerification} />
             <Route

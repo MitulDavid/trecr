@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
@@ -13,6 +13,12 @@ import MenuSearchIcon from '../assets/Icons/MenuSearchIcon.svg';
 import DashboardIcon from '../assets/Icons/DashboardIcon.svg';
 
 const NavMenu = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const [MenuState, setMenuState] = useState({
+    isOpen: false,
+  });
+
+  const { isOpen } = MenuState;
+
   const guestLinks = (
     <Fragment>
       <Link to='/signup' className='menu-item cta'>
@@ -38,10 +44,32 @@ const NavMenu = ({ auth: { isAuthenticated, loading }, logout }) => {
         <img src={MenuSearchIcon} className='menuIcon' alt='MenuIcon' />
         Search by Username
       </Link>
-      <Link to='' className='menu-item'>
+      <div
+        className='menu-item'
+        onClick={(e) =>
+          setMenuState({ ...MenuState, isOpen: !MenuState.isOpen })
+        }
+      >
         <img src={SettingIcon} className='menuIcon' alt='MenuIcon' />
-        Account Settings
-      </Link>
+        Settings
+      </div>
+      {isOpen && (
+        <Fragment>
+          <Link
+            to='/account/changeusername'
+            className='menu-item menu-sub-item msi-one'
+          >
+            Change Username
+          </Link>
+          <Link
+            to='/account/changepassword'
+            className='menu-item menu-sub-item msi-two'
+          >
+            Change Password
+          </Link>
+        </Fragment>
+      )}
+
       <Link to='#!' onClick={logout} className='menu-item'>
         <img src={LogoutIcon} className='menuIcon' alt='MenuIcon' />
         Logout

@@ -41,7 +41,7 @@ const Landing = ({ isAuthenticated }) => {
               alt='List decoration'
               className='bullet big'
             />
-            Add your recommendations to your list
+            Search for movies or shows and add them to your list
           </li>
           <li>
             <img

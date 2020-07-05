@@ -11,7 +11,21 @@
   font-weight: 500;
   line-height: 1.4rem;
   color: white;
+  cursor: pointer;
   padding: 20px 0;
+}
+
+.menu-sub-item {
+  padding: 10px 0 10px calc(50px + 4vw);
+  font-size: 1rem;
+}
+
+.msi-one {
+  padding-top: 0;
+}
+
+.msi-two {
+  padding-bottom: 20px;
 }
 
 .menu-item:hover {
@@ -25,6 +39,7 @@
 .cta {
   padding: 10px 0;
 }
+
 .menu-item-cta {
   border-radius: 18px;
   padding: 6px 8.27vw;
@@ -106,6 +121,19 @@
   .menu-item {
     line-height: 1.8rem;
     padding: 1.85vh 0;
+  }
+
+  .menu-sub-item {
+    padding: 0.925vh 0 0.925vh 3.6vw;
+    font-size: 1.4rem;
+  }
+
+  .msi-one {
+    padding-top: 0;
+  }
+
+  .msi-two {
+    padding-bottom: 1.85vh;
   }
 
   .bm-menu {

@@ -55,7 +55,7 @@ const PublicRecList = ({
                 This user either does not exist or doesnt have any
                 recommendatons yet.
               </div>
-              <Link to='../../' className='submit-btn verify-btn'>
+              <Link to='/' className='submit-btn verify-btn'>
                 Head Back
               </Link>
             </div>
@@ -121,7 +121,7 @@ const PublicRecList = ({
                 This user either does not exist or doesnt have any
                 recommendatons yet.
               </div>
-              <Link to='../../' className='submit-btn verify-btn'>
+              <Link to='/' className='submit-btn verify-btn'>
                 Head Back
               </Link>
             </div>

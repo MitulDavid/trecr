@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const config = require('config');
 const nodemailer = require('nodemailer');
-
+const auth = require('../../middleware/auth');
 const User = require('../../models/Users');
 
 //Email Transport
@@ -281,6 +281,127 @@ router.post(
       if (err.message === 'invalid token') {
         return res.status(400).json({ errors: [{ msg: 'Invalid Request' }] });
       }
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+//@route   POST api/users/changeusername
+//@desc    Change logged in user's username
+//@access  Private
+router.post(
+  '/changeusername',
+  [
+    auth,
+    [
+      check('username', 'Username is required').not().isEmpty(),
+      check('username', 'Username must be less than 20 characters')
+        .isLength({
+          max: 20,
+        })
+        .trim()
+        .customSanitizer((value) => {
+          return value.toLowerCase();
+        }),
+      check(
+        'username',
+        'Username must contain only letters, numbers, underscores.'
+      ).matches('^[a-zA-Z0-9_]+$', 'i'),
+      check('password', 'Password is required').exists(),
+    ],
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { username, password } = req.body;
+      let user = await User.findById(req.user.id);
+
+      if (!user) {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Request' }] });
+      }
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (!isMatch) {
+        return res.status(400).json({ errors: [{ msg: 'Wrong Password' }] });
+      }
+
+      if (username === user.username) {
+        return res.status(400).json({
+          errors: [
+            {
+              msg: 'The new username and the old username cannot be the same.',
+            },
+          ],
+        });
+      }
+
+      let userCheck = await User.findOne({ username });
+      if (userCheck) {
+        return res.status(400).json({
+          errors: [
+            { msg: 'That username already exists. Please pick another one' },
+          ],
+        });
+      }
+
+      user.username = username;
+      await user.save();
+
+      return res.status(200).json({ msg: 'Username Changed' });
+    } catch (err) {
+      console.error(err.message);
+      if (err.message === 'invalid token') {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Request' }] });
+      }
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+//@route   POST api/users/changepassword
+//@desc    Change logged in user's password
+//@access  Private
+router.post(
+  '/changepassword',
+  [
+    auth,
+    [
+      check('password', 'Password is required').exists(),
+      check('newpassword', 'Password must be atleast 6 characters').isLength({
+        min: 6,
+      }),
+    ],
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { password, newpassword } = req.body;
+      let user = await User.findById(req.user.id);
+
+      if (!user) {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Request' }] });
+      }
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (!isMatch) {
+        return res.status(400).json({ errors: [{ msg: 'Wrong Password' }] });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(newpassword, salt);
+      await user.save();
+
+      return res.status(200).json({ msg: 'Password Changed' });
+    } catch (err) {
+      console.error(err.message);
       res.status(500).send('Server Error');
     }
   }

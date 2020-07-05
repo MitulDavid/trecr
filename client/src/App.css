@@ -964,6 +964,13 @@ a {
     position: relative;
     left: 3.75vw;
   }
+
+  .account-ub-image img {
+    width: 40.67vw;
+    height: 32.81vw;
+    top: -3vh;
+    left: 6vw;
+  }
   /* signup.css ends*/
   /* userreclist.css starts */
   .r-nav {

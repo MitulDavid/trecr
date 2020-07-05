@@ -45,7 +45,7 @@ const VerifyEmail = ({ match }) => {
               Welcome to trecr! You're all done with the sign up process, head
               back to start working on your list.
             </div>
-            <Link to='../../' className='submit-btn verify-btn'>
+            <Link to='/' className='submit-btn verify-btn'>
               Head Back
             </Link>
           </div>
@@ -74,7 +74,7 @@ const VerifyEmail = ({ match }) => {
               Verification links expire after a few hours. Want us to send you
               another link?
             </div>
-            <Link to='../../user/resend' className='submit-btn verify-btn'>
+            <Link to='/user/resend' className='submit-btn verify-btn'>
               Resend Link
             </Link>
           </div>

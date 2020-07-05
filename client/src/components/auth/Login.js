@@ -61,7 +61,7 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
           <div className='frgt-pswrd'>
-            <Link to='../user/forgotpassword'>Forgot your password?</Link>
+            <Link to='/user/forgotpassword'>Forgot your password?</Link>
           </div>
         </div>
         <input type='submit' className='submit-btn' value='Log In' />
