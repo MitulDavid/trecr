@@ -56,8 +56,8 @@ const ResendVerification = () => {
           <br />
           <input
             className='form-input'
-            // type='email'
-            // required={true}
+            type='email'
+            required={true}
             name='email'
             placeholder='Enter your email id'
             value={email}

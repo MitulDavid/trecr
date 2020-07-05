@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PublicRecEntry from './PublicRecEntry';
 import PublicRecShow from './PublicRecShow';
 import Spinner from '../layout/Spinner';
+import VerifyErrorIcon from '../assets/Icons/VerifyErrorIcon.svg';
 
 import { getReclistByUsername } from '../../actions/reclist';
 import NavMenu from '../layout/NavMenu';
@@ -35,8 +36,31 @@ const PublicRecList = ({
   ) {
     return (
       //@todo: Add Page Design
+
       <Fragment>
-        This user either doesnt exist or doesnt have any recs yet screen
+        <Fragment>
+          <div className='verify-container'>
+            <div className='verify-topbar'>
+              <p className='ub-logo verify-logo'>trecr</p>
+              <p className='ub-logo-tag verify-logo'>/ the • rec • room /</p>
+            </div>
+            <div className='verify-msg'>
+              <img
+                src={VerifyErrorIcon}
+                className='verify-icon'
+                alt='InvalidLink'
+              />
+              <div className='verify-heading'>There's nothing here</div>
+              <div className='verify-subhead'>
+                This user either does not exist or doesnt have any
+                recommendatons yet.
+              </div>
+              <Link to='../../' className='submit-btn verify-btn'>
+                Head Back
+              </Link>
+            </div>
+          </div>
+        </Fragment>
       </Fragment>
     );
   } else if (viewlist !== null) {
@@ -78,7 +102,33 @@ const PublicRecList = ({
     );
   } else {
     //@todo: Add Page Design
-    return <Fragment>Error</Fragment>;
+    return (
+      <Fragment>
+        <Fragment>
+          <div className='verify-container'>
+            <div className='verify-topbar'>
+              <p className='ub-logo verify-logo'>trecr</p>
+              <p className='ub-logo-tag verify-logo'>/ the • rec • room /</p>
+            </div>
+            <div className='verify-msg'>
+              <img
+                src={VerifyErrorIcon}
+                className='verify-icon'
+                alt='InvalidLink'
+              />
+              <div className='verify-heading'>All out of recommendations</div>
+              <div className='verify-subhead'>
+                This user either does not exist or doesnt have any
+                recommendatons yet.
+              </div>
+              <Link to='../../' className='submit-btn verify-btn'>
+                Head Back
+              </Link>
+            </div>
+          </div>
+        </Fragment>
+      </Fragment>
+    );
   }
 };
 

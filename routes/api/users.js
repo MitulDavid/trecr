@@ -130,7 +130,7 @@ router.get('/confirmation/:token', async (req, res) => {
     }
     user.verified = true;
     await user.save();
-    return res.status(200).json({ errors: [{ msg: 'User Verified' }] });
+    return res.status(200).json({ msg: 'User Verified' });
   } catch (err) {
     if (err.message === 'invalid token') {
       ///@todo: on the frontend show resend verification link
@@ -196,4 +196,94 @@ router.post(
     }
   }
 );
+
+//@route   POST api/users/forgotpassword
+//@desc    Send password reset email
+//@access  Public
+router.post(
+  '/forgotpassword',
+  [check('email', 'Please enter a valid email').isEmail().normalizeEmail()],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { email } = req.body;
+    try {
+      let user = await User.findOne({ email });
+      if (!user) {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Email' }] });
+      }
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          //@todo: change url to frontend route
+          const url = `http://localhost:3000/user/resetpassword/${token}`; //Confirmation Link
+          transporter.sendMail({
+            from: 'no-reply@trecr.com',
+            to: email,
+            subject: 'Password Reset Request | trecr',
+            //@todo: CSS for email body
+            html: `Please click this to reset your password: <a href="${url}">${url}</a>`,
+          });
+          res.json({ msg: 'Password Reset Email Sent' });
+        }
+      );
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+//@route   POST api/users/resetpassword/:token
+//@desc    Reset User's Password
+//@access  Public
+router.get(
+  '/resetpassword/:token',
+  [
+    check('password', 'Password must be atleast 6 characters').isLength({
+      min: 6,
+    }),
+  ],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { password } = req.body;
+
+      const decoded = jwt.verify(req.params.token, config.get('jwtSecret'));
+      userid = decoded.user.id;
+      let user = await User.findById(userid);
+
+      if (!user) {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Request' }] });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+      await user.save();
+
+      return res.status(200).json({ msg: 'Password Changed' });
+    } catch (err) {
+      if (err.message === 'invalid token') {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Request' }] });
+      }
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
 module.exports = router;
