@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import UserBoardingImg from '../assets/UserBoardingImg.png';
 import axios from 'axios';
 
-const ResendVerification = () => {
+const ForgotPassword = () => {
   const [formData, setFormData] = useState({
     email: '',
   });
@@ -14,7 +14,7 @@ const ResendVerification = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const resendLink = async () => {
+  const sendFPLink = async () => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -23,8 +23,10 @@ const ResendVerification = () => {
 
     const body = JSON.stringify({ email });
     try {
-      await axios.post('/api/users/resendverification', body, config);
-      toast.success('A verificaiton email has been sent to your email id');
+      await axios.post('/api/users/forgotpassword', body, config);
+      toast.success(
+        'An email has been sent to you with a link to reset your password'
+      );
     } catch (err) {
       const errors = err.response.data.errors;
       if (errors) {
@@ -32,13 +34,13 @@ const ResendVerification = () => {
           toast.error(error.msg);
         });
       } else {
-        toast.error('Request not valid');
+        toast.error('An error occured');
       }
     }
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    resendLink();
+    sendFPLink();
   };
 
   return (
@@ -50,7 +52,7 @@ const ResendVerification = () => {
         <p className='ub-logo-tag'>/ the • rec • room /</p>
       </div>
       <form className='login-form' onSubmit={onSubmit}>
-        <h1 className='form-heading verify-form'>Resend Verification Email</h1>
+        <h1 className='form-heading verify-form'>Forgot Your Password?</h1>
         <div className='form-grp'>
           <label className='form-label'>Email</label>
           <br />
@@ -64,7 +66,7 @@ const ResendVerification = () => {
             onChange={(e) => onChange(e)}
           />
         </div>
-        <input type='submit' className='submit-btn' value='Resend' />
+        <input type='submit' className='submit-btn' value='Reset Password' />
       </form>
       <div className='ub-image'>
         <img src={UserBoardingImg} alt='Sign up or login to trecr' />
@@ -73,4 +75,4 @@ const ResendVerification = () => {
   );
 };
 
-export default ResendVerification;
+export default ForgotPassword;

@@ -8,6 +8,9 @@ import PublicRecList from './components/reclist/PublicRecList';
 import PrivateRoute from './components/routing/PrivateRoute';
 import VerifyEmail from './components/layout/VerifyEmail';
 import ResendVerification from './components/auth/ResendVerification';
+import ForgotPassword from './components/auth/ForgotPassword';
+import ResetPassword from './components/auth/ResetPassword';
+
 //Toast
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -40,6 +43,16 @@ const App = () => {
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
             <Route exact path='/user/verify/:token' component={VerifyEmail} />
             <Route exact path='/user/resend' component={ResendVerification} />
+            <Route
+              exact
+              path='/user/forgotpassword'
+              component={ForgotPassword}
+            />
+            <Route
+              exact
+              path='/user/resetpassword/:token'
+              component={ResetPassword}
+            />
             <Route exact path='/:username' component={PublicRecList} />
           </Switch>
         </Fragment>

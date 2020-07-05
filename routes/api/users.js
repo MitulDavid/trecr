@@ -248,7 +248,7 @@ router.post(
 //@route   POST api/users/resetpassword/:token
 //@desc    Reset User's Password
 //@access  Public
-router.get(
+router.post(
   '/resetpassword/:token',
   [
     check('password', 'Password must be atleast 6 characters').isLength({

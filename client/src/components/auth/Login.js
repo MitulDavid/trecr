@@ -61,8 +61,7 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
           <div className='frgt-pswrd'>
-            {/* @todo: add func for forgot password */}
-            <Link to=''>Forgot your password?</Link>
+            <Link to='../user/forgotpassword'>Forgot your password?</Link>
           </div>
         </div>
         <input type='submit' className='submit-btn' value='Log In' />

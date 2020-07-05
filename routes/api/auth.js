@@ -54,12 +54,10 @@ router.post(
       }
 
       if (!user.verified) {
-        return (
-          res
-            .status(400)
-            //@todo: add link to resend verification link
-            .json({ errors: [{ msg: 'Please verify your email to login' }] })
-        );
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Please verify your email to login' }] });
+        //@note: msg here is checked in front-end to identify error case; note when changing msg
       }
 
       const payload = {

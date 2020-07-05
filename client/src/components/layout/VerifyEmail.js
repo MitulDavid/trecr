@@ -24,7 +24,6 @@ const VerifyEmail = ({ match }) => {
   };
 
   const { resStatus } = response;
-  //@todo: Add Page Design
   if (resStatus)
     return (
       <Fragment>
