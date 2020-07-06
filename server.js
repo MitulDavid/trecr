@@ -12,6 +12,7 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/reclist', require('./routes/api/reclist'));
 app.use('/api/search', require('./routes/api/search'));
+app.use('/api/pinnedlist', require('./routes/api/pinnedlist'));
 
 app.get('/', (req, res) => {
   res.send('<h1>Test</h1>');

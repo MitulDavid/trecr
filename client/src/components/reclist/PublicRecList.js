@@ -52,8 +52,8 @@ const PublicRecList = ({
               />
               <div className='verify-heading'>There's nothing here</div>
               <div className='verify-subhead'>
-                This user either does not exist or doesnt have any
-                recommendatons yet.
+                This user either does not exist or doesn't have any
+                recommendations yet.
               </div>
               <Link to='/' className='submit-btn verify-btn'>
                 Head Back
@@ -118,8 +118,8 @@ const PublicRecList = ({
               />
               <div className='verify-heading'>All out of recommendations</div>
               <div className='verify-subhead'>
-                This user either does not exist or doesnt have any
-                recommendatons yet.
+                This user either does not exist or doesn't have any
+                recommendations yet.
               </div>
               <Link to='/' className='submit-btn verify-btn'>
                 Head Back
