@@ -11,6 +11,7 @@ import {
   LOGOUT,
   CLEAR_RECLIST,
   CLEAR_SEARCH_RES,
+  CLEAR_PINNEDLIST,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -136,5 +137,6 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_RECLIST });
   dispatch({ type: CLEAR_SEARCH_RES });
+  dispatch({ type: CLEAR_PINNEDLIST });
   dispatch({ type: LOGOUT });
 };
