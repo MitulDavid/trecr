@@ -40,9 +40,9 @@ const NavMenu = ({ auth: { isAuthenticated, loading }, logout }) => {
         <img src={MenuPinIcon} className='menuIcon' alt='MenuIcon' />
         Pinned Lists
       </Link>
-      <Link to='' className='menu-item'>
+      <Link to='/dashboard/finduser' className='menu-item'>
         <img src={MenuSearchIcon} className='menuIcon' alt='MenuIcon' />
-        Search by Username
+        Find by Username
       </Link>
       <div
         className='menu-item'

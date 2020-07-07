@@ -4,6 +4,7 @@ import {
   GET_VIEWLIST,
   RECLIST_ERROR,
   UPDATE_LIKES,
+  VIEWLIST_CLENSE,
 } from './types';
 import { toast } from 'react-toastify';
 
@@ -99,6 +100,10 @@ export const removeRecEntry = (r_item_id) => async (dispatch) => {
 //Get a user's reclist by username
 export const getReclistByUsername = (username) => async (dispatch) => {
   try {
+    //@temporary-fix
+    dispatch({
+      type: VIEWLIST_CLENSE,
+    });
     const res = await axios.get(`/api/reclist/${username}`);
     dispatch({
       type: GET_VIEWLIST,

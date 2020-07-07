@@ -1048,6 +1048,10 @@ a {
     top: -3vh;
     left: 6vw;
   }
+
+  .find-user-img img {
+    width: 50vw;
+  }
   /* signup.css ends*/
   /* userreclist.css starts */
   .r-nav {

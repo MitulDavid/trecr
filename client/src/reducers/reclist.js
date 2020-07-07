@@ -4,6 +4,7 @@ import {
   RECLIST_ERROR,
   CLEAR_RECLIST,
   UPDATE_LIKES,
+  VIEWLIST_CLENSE,
 } from '../actions/types';
 
 const initialState = {
@@ -31,6 +32,8 @@ export default function (state = initialState, action) {
     case RECLIST_ERROR:
       return {
         ...state,
+        //@temporary-fix
+        viewlist: null,
         error: payload,
         loading: false,
       };
@@ -53,6 +56,13 @@ export default function (state = initialState, action) {
           ),
         },
         loading: false,
+      };
+    case VIEWLIST_CLENSE:
+      return {
+        ...state,
+        viewlist: null,
+        loading: true,
+        error: {},
       };
     default:
       return state;
