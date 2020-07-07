@@ -12,6 +12,7 @@ import ForgotPassword from './components/auth/ForgotPassword';
 import ResetPassword from './components/auth/ResetPassword';
 import ChangeUsername from './components/profile/ChangeUsername';
 import ChangePassword from './components/profile/ChangePassword';
+import PinnedLists from './components/profile/PinnedLists';
 
 //Toast
 import { ToastContainer, Slide } from 'react-toastify';
@@ -43,6 +44,11 @@ const App = () => {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute
+              exact
+              path='/dashboard/pinnedlists'
+              component={PinnedLists}
+            />
             <PrivateRoute
               exact
               path='/account/changeusername'

@@ -8,17 +8,20 @@ import Spinner from '../layout/Spinner';
 import VerifyErrorIcon from '../assets/Icons/VerifyErrorIcon.svg';
 
 import { getReclistByUsername } from '../../actions/reclist';
+import { pinList } from '../../actions/pinnedlist';
 import NavMenu from '../layout/NavMenu';
 import PinIcon from '../assets/Icons/PinIcon.svg';
 
 const PublicRecList = ({
   match,
   getReclistByUsername,
+  pinList,
   reclist: { loading, error, viewlist },
 }) => {
   useEffect(() => {
     getReclistByUsername(match.params.username);
   }, []);
+  const onClick = (id) => pinList(id);
 
   if (loading && viewlist === null) {
     return (
@@ -35,8 +38,6 @@ const PublicRecList = ({
     viewlist.r_list === null
   ) {
     return (
-      //@todo: Add Page Design
-
       <Fragment>
         <Fragment>
           <div className='verify-container'>
@@ -85,9 +86,12 @@ const PublicRecList = ({
             <div className='rec-list'>
               <div className='rl-header'>
                 <div className='rl-heading'>the.rec.list</div>{' '}
-                <Link className='pin-list' to=''>
+                <span
+                  className='pin-list'
+                  onClick={() => onClick(viewlist.user_id._id)}
+                >
                   <img src={PinIcon} alt='Pin List' />
-                </Link>
+                </span>
                 <div className='rl-subheading'>
                   {viewlist && viewlist.user_id.username}'s recommendations
                 </div>
@@ -135,12 +139,13 @@ const PublicRecList = ({
 PublicRecList.propTypes = {
   getReclistByUsername: PropTypes.func.isRequired,
   reclist: PropTypes.object.isRequired,
+  pinList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reclist: state.reclist,
 });
 
-export default connect(mapStateToProps, { getReclistByUsername })(
+export default connect(mapStateToProps, { getReclistByUsername, pinList })(
   PublicRecList
 );

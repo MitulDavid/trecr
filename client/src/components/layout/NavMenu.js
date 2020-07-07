@@ -36,7 +36,7 @@ const NavMenu = ({ auth: { isAuthenticated, loading }, logout }) => {
         <img src={DashboardIcon} className='menuIcon' alt='MenuIcon' />
         Dashboard
       </Link>
-      <Link to='' className='menu-item'>
+      <Link to='/dashboard/pinnedlists' className='menu-item'>
         <img src={MenuPinIcon} className='menuIcon' alt='MenuIcon' />
         Pinned Lists
       </Link>
