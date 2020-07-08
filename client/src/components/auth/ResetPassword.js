@@ -4,8 +4,10 @@ import { toast } from 'react-toastify';
 import UserBoardingImg from '../assets/UserBoardingImg.png';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ResetPassword = ({ match }) => {
+  const recaptchaRef = React.createRef();
   const [formData, setFormData] = useState({
     password: '',
     repassword: '',
@@ -42,10 +44,27 @@ const ResetPassword = ({ match }) => {
       }
     }
   };
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== repassword) toast.error('Passwords do not match');
-    else resetPassword();
+    else {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      try {
+        recaptchaRef.current.reset();
+        const token = await recaptchaRef.current.executeAsync();
+
+        const body = JSON.stringify({ captcha: token });
+        await axios.post('/api/auth/verifycaptcha', body, config);
+
+        resetPassword();
+      } catch (err) {
+        toast.error('reCaptcha failed. Please try again');
+      }
+    }
   };
 
   return (
@@ -91,6 +110,11 @@ const ResetPassword = ({ match }) => {
             <b>Log In</b>
           </Link>
         </p>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size='invisible'
+          sitekey='6LcXD68ZAAAAAG3ynckKmUXFUEXamuQCSmUhHF5k'
+        />
       </form>
       <div className='ub-image'>
         <img src={UserBoardingImg} alt='Sign up or login to trecr' />

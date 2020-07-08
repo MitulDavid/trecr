@@ -5,8 +5,12 @@ import { register } from '../../actions/auth';
 import { toast } from 'react-toastify';
 import UserBoardingImg from '../assets/UserBoardingImg.png';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const SignUp = ({ register, isAuthenticated }) => {
+  const recaptchaRef = React.createRef();
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -18,12 +22,28 @@ const SignUp = ({ register, isAuthenticated }) => {
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== repassword) {
       toast.error('Passwords do not match');
     } else {
-      register({ username, email, password });
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      try {
+        recaptchaRef.current.reset();
+        const token = await recaptchaRef.current.executeAsync();
+
+        const body = JSON.stringify({ captcha: token });
+        await axios.post('/api/auth/verifycaptcha', body, config);
+
+        register({ username, email, password });
+      } catch (err) {
+        toast.error('reCaptcha failed. Please try again');
+      }
     }
   };
 
@@ -102,6 +122,11 @@ const SignUp = ({ register, isAuthenticated }) => {
             <b>Log In</b>
           </Link>
         </p>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size='invisible'
+          sitekey='6LcXD68ZAAAAAG3ynckKmUXFUEXamuQCSmUhHF5k'
+        />
       </form>
       <div className='ub-image'>
         <img src={UserBoardingImg} alt='Sign up or login to trecr' />

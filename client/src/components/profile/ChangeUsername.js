@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SettingsPage from '../assets/SettingsPage.svg';
 import axios from 'axios';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ChangeUsername = () => {
+  const recaptchaRef = React.createRef();
   const [formData, setFormData] = useState({
     password: '',
     username: '',
@@ -37,9 +39,25 @@ const ChangeUsername = () => {
       }
     }
   };
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    changeUsername();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      recaptchaRef.current.reset();
+      const token = await recaptchaRef.current.executeAsync();
+
+      const body = JSON.stringify({ captcha: token });
+      await axios.post('/api/auth/verifycaptcha', body, config);
+
+      changeUsername();
+    } catch (err) {
+      toast.error('reCaptcha failed. Please try again');
+    }
   };
 
   return (
@@ -84,6 +102,11 @@ const ChangeUsername = () => {
             <b>Go Back</b>
           </Link>
         </p>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size='invisible'
+          sitekey='6LcXD68ZAAAAAG3ynckKmUXFUEXamuQCSmUhHF5k'
+        />
       </form>
       <div className='ub-image account-ub-image'>
         <img src={SettingsPage} alt='Sign up or login to trecr' />

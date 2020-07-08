@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const config = require('config');
+const axios = require('axios');
 
 const auth = require('../../middleware/auth');
 const User = require('../../models/Users');
@@ -81,5 +82,45 @@ router.post(
     }
   }
 );
+
+//@route   POST api/auth/verifycaptcha
+//@desc    Verify recaptcha token
+//@access  Public
+router.post('/verifycaptcha', async (req, res) => {
+  try {
+    if (!req.body.captcha)
+      return res
+        .status(400)
+        .json({ success: false, msg: 'Captcha not completed' });
+
+    // Secret key
+    const secretKey = config.get('recaptchaSecret');
+
+    // Verify URL
+    const query = new URLSearchParams({
+      secret: secretKey,
+      response: req.body.captcha,
+      remoteip: req.connection.remoteAddress,
+    }).toString();
+
+    // Make a request to verifyURL
+    const body = await axios.post(
+      `https://google.com/recaptcha/api/siteverify?${query}`
+    );
+
+    // console.log(body);
+    // If not successful
+    if (body.data.success !== undefined && !body.data.success)
+      return res
+        .status(400)
+        .json({ success: false, msg: 'Failed captcha verification' });
+
+    // If successful
+    return res.json({ success: true, msg: 'Captcha passed' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
