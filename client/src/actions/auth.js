@@ -123,7 +123,8 @@ export const login = (email, password) => async (dispatch) => {
               >
                 Resend Verification
               </a>
-            </p>
+            </p>,
+            { autoClose: false }
           );
       });
     }

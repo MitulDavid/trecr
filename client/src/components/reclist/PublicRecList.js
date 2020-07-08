@@ -11,17 +11,21 @@ import { getReclistByUsername } from '../../actions/reclist';
 import { pinList } from '../../actions/pinnedlist';
 import NavMenu from '../layout/NavMenu';
 import PinIcon from '../assets/Icons/PinIcon.svg';
+import { toast } from 'react-toastify';
 
 const PublicRecList = ({
   match,
   getReclistByUsername,
   pinList,
   reclist: { loading, error, viewlist },
+  isAuthenticated,
 }) => {
   useEffect(() => {
     getReclistByUsername(match.params.username);
   }, []);
-  const onClick = (id) => pinList(id);
+  const onClick = (id) => {
+    isAuthenticated ? pinList(id) : toast.error('Log in to pin lists');
+  };
 
   if (loading && viewlist === null) {
     return (
@@ -140,10 +144,12 @@ PublicRecList.propTypes = {
   getReclistByUsername: PropTypes.func.isRequired,
   reclist: PropTypes.object.isRequired,
   pinList: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   reclist: state.reclist,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { getReclistByUsername, pinList })(

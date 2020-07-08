@@ -73,7 +73,7 @@ const PinnedLists = ({
         <Link to={`/${pentry.user.username}`} className='plist-msg'>
           <div className='ae-msg-main plist-uname'>{pentry.user.username}</div>
           <div className='ae-msg-sub plist-sub'>
-            {pentry.user.username}'s rec.list
+            trecr.com/{pentry.user.username}
           </div>
         </Link>
         <img

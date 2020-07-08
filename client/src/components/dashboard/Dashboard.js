@@ -27,7 +27,12 @@ const Dashboard = ({
         <nav className='r-nav'>
           <div className='nav-logo'>
             <div className='nav-logo-title'>trecr</div>
-            <div className='nav-logo-username'>@{user && user.username}</div>
+            <div className='nav-logo-username'>
+              @
+              {reclist !== null && reclist.user_id.username
+                ? reclist.user_id.username
+                : user && user.username}
+            </div>
           </div>
         </nav>
         <div className='rec-case'>
@@ -61,8 +66,8 @@ Dashboard.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
   reclist: state.reclist,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getCurrentReclist })(Dashboard);
