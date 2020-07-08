@@ -1,11 +1,21 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const rateLimit = require('express-rate-limit');
 
 app = express();
 connectDB();
 
 //Bodyparser Middleware
 app.use(express.json({ extendend: false }));
+
+//Rate Limiter
+app.set('trust proxy', 1);
+const apiLimiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 5,
+});
+app.use('/api/users/resendverification', apiLimiter);
+app.use('/api/users/forgotpassword', apiLimiter);
 
 //Routes
 app.use('/api/users', require('./routes/api/users'));

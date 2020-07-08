@@ -30,7 +30,9 @@ const ResendVerification = () => {
       toast.success('A verificaiton email has been sent to your email id');
     } catch (err) {
       const errors = err.response.data.errors;
-      if (errors) {
+      if (err.response.status === 429)
+        toast.error('You have made too many requests, please try again later.');
+      else if (errors) {
         errors.forEach((error) => {
           toast.error(error.msg);
         });
