@@ -27,7 +27,7 @@ const ResendVerification = () => {
     const body = JSON.stringify({ email });
     try {
       await axios.post('/api/users/resendverification', body, config);
-      toast.success('A verificaiton email has been sent to your email id');
+      toast.success('A verification email has been sent to your email id');
     } catch (err) {
       const errors = err.response.data.errors;
       if (err.response.status === 429)

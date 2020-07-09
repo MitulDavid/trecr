@@ -35,15 +35,15 @@ export const getCurrentReclist = () => async (dispatch) => {
 //Add an entry to your reclist
 export const addToReclist = (mediaType, id) => async (dispatch) => {
   try {
-    toast.info('Adding entry...', { toastId: 'addingentry', autoClose: 5000 });
+    toast.info('Adding entry...', { toastId: 'addingentry', autoClose: 2000 });
     const res = await axios.post(`/api/reclist/${mediaType}/${id}`);
-    toast.isActive('addingentry')
-      ? toast.update('addingentry', {
-          type: toast.TYPE.SUCCESS,
-          autoClose: 5000,
-          render: 'Entry added to your list',
-        })
-      : toast.success('Entry added to your list');
+    // toast.isActive('addingentry')
+    //   ? toast.update('addingentry', {
+    //       type: toast.TYPE.SUCCESS,
+    //       autoClose: 5000,
+    //       render: 'Entry added to your list',
+    //     })
+    //   : toast.success('Entry added to your list');
     dispatch({
       type: GET_RECLIST,
       payload: res.data,

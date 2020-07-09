@@ -14,11 +14,28 @@
 .Toastify__toast {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
+  font-weight: 500;
+  padding-left: 20px;
   border-radius: 7px;
 }
 .Toastify__progress-bar {
   bottom: -1px;
   height: 6px;
+}
+
+.Toastify__toast--info {
+  background-color: #cce5ff;
+  color: #004085;
+}
+.Toastify__toast--success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.Toastify__close-button--success {
+  color: black;
+}
+.Toastify__close-button--info {
+  color: black;
 }
 
 @media only screen and (max-width: 480px) {
