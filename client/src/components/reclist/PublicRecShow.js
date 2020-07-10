@@ -20,6 +20,7 @@ const PublicRecShow = ({
       randomEntry:
         viewlist.r_list[Math.floor(Math.random() * viewlist.r_list.length)],
     });
+    // eslint-disable-next-line
   }, []);
   const { randomEntry } = randEntry;
   const rmvLike = (reclist_id, rle_id) => {

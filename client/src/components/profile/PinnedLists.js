@@ -15,7 +15,7 @@ const PinnedLists = ({
 }) => {
   useEffect(() => {
     getPinnedList();
-  }, []);
+  }, [getPinnedList]);
   const onClick = (id) => unpinList(id);
   if (loading && pinnedlist === null)
     return (

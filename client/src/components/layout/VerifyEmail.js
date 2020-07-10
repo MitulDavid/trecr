@@ -8,6 +8,7 @@ import VerifyErrorIcon from '../assets/Icons/VerifyErrorIcon.svg';
 const VerifyEmail = ({ match }) => {
   useEffect(() => {
     VerifyEmailAPI();
+    //eslint-disable-next-line
   }, []);
 
   const [response, setResponse] = useState({

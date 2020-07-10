@@ -235,7 +235,7 @@ router.post(
               </table><table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="98ndJyAY9BSGjoVqrr6FYx">
                   <tbody><tr>
                     <td style="font-size:6px; line-height:10px; padding:30px 0px 30px 0px;" valign="top" align="center">
-                      <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:25% !important; width:25%; height:auto !important;" src="http://cdn.mcauto-images-production.sendgrid.net/a1f0e1d27c548f1e/f433a97e-a16b-4089-bdc6-0d309bc4fc23/314x205.png" alt="Off Grid Adventures" width="150" data-responsive="true" data-proportionally-constrained="false">
+                      <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:25% !important; width:25%; height:auto !important;" src="http://cdn.mcauto-images-production.sendgrid.net/a1f0e1d27c548f1e/f433a97e-a16b-4089-bdc6-0d309bc4fc23/314x205.png" alt="Email Logo" width="150" data-responsive="true" data-proportionally-constrained="false">
                     </td>
                   </tr>
                 </tbody></table><table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:0px 0px 0px 0px;" bgcolor="#FFFFFF">
@@ -527,7 +527,7 @@ router.post(
               </table><table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="98ndJyAY9BSGjoVqrr6FYx">
                   <tbody><tr>
                     <td style="font-size:6px; line-height:10px; padding:30px 0px 30px 0px;" valign="top" align="center">
-                      <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:25% !important; width:25%; height:auto !important;" src="http://cdn.mcauto-images-production.sendgrid.net/a1f0e1d27c548f1e/f433a97e-a16b-4089-bdc6-0d309bc4fc23/314x205.png" alt="Off Grid Adventures" width="150" data-responsive="true" data-proportionally-constrained="false">
+                      <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:25% !important; width:25%; height:auto !important;" src="http://cdn.mcauto-images-production.sendgrid.net/a1f0e1d27c548f1e/f433a97e-a16b-4089-bdc6-0d309bc4fc23/314x205.png" alt="Email Logo" width="150" data-responsive="true" data-proportionally-constrained="false">
                     </td>
                   </tr>
                 </tbody></table><table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:0px 0px 0px 0px;" bgcolor="#FFFFFF">
@@ -786,7 +786,7 @@ router.post(
               </table><table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="98ndJyAY9BSGjoVqrr6FYx">
                   <tbody><tr>
                     <td style="font-size:6px; line-height:10px; padding:30px 0px 30px 0px;" valign="top" align="center">
-                      <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:25% !important; width:25%; height:auto !important;" src="http://cdn.mcauto-images-production.sendgrid.net/a1f0e1d27c548f1e/f433a97e-a16b-4089-bdc6-0d309bc4fc23/314x205.png" alt="Off Grid Adventures" width="150" data-responsive="true" data-proportionally-constrained="false">
+                      <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:25% !important; width:25%; height:auto !important;" src="http://cdn.mcauto-images-production.sendgrid.net/a1f0e1d27c548f1e/f433a97e-a16b-4089-bdc6-0d309bc4fc23/314x205.png" alt="Email Logo" width="150" data-responsive="true" data-proportionally-constrained="false">
                     </td>
                   </tr>
                 </tbody></table><table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:0px 0px 0px 0px;" bgcolor="#FFFFFF">

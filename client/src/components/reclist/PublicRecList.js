@@ -22,7 +22,7 @@ const PublicRecList = ({
 }) => {
   useEffect(() => {
     getReclistByUsername(match.params.username);
-  }, []);
+  }, [getReclistByUsername, match.params.username]);
   const onClick = (id) => {
     isAuthenticated ? pinList(id) : toast.error('Log in to pin lists');
   };

@@ -15,7 +15,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentReclist();
-  }, []);
+  }, [getCurrentReclist]);
   return loading && reclist === null ? (
     <div className='spinner-container'>
       <Spinner />

@@ -40,8 +40,8 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Route exact path='/' component={Landing} />
           <Switch>
+            <Route exact path='/' component={Landing} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
