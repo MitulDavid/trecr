@@ -69,6 +69,12 @@ export const register = ({ username, email, password }) => async (dispatch) => {
       </p>,
       { autoClose: false }
     );
+    const share = (
+      <p>
+        Share your rec.list with the link: <b>trecr.com/{username}</b>
+      </p>
+    );
+    toast.info(share, { autoClose: false });
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {

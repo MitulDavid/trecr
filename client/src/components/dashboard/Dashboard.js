@@ -7,6 +7,7 @@ import SearchEntry from './SearchEntry';
 import SearchResults from './SearchResults';
 import DashRecList from './DashRecList';
 import { getCurrentReclist } from '../../actions/reclist';
+import Footer from '../layout/Footer';
 
 const Dashboard = ({
   getCurrentReclist,
@@ -54,6 +55,7 @@ const Dashboard = ({
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </Fragment>
   );

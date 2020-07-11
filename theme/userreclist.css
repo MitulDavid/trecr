@@ -1,6 +1,7 @@
 .user-rec-list {
   display: grid;
   font-family: 'Montserrat', sans-serif;
+  min-height: 120vh;
 }
 
 .r-nav {

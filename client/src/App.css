@@ -58,8 +58,9 @@ a {
 /* homepage.css starts */
 .home-container {
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: min-content min-content min-content 1fr;
   padding-top: 7.9vh;
+  min-height: 100vh;
 }
 .home-nav {
   grid-area: 2 / 1 / 3 / 2;
@@ -179,7 +180,53 @@ a {
   left: -2vw;
 }
 /* homepage.css ends */
+/*Footer*/
+footer {
+  display: grid;
+  justify-items: center;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #e4e4e4;
+  padding: 33px 0; /**/
+  /*Extra*/
+  width: 100%;
+  margin-top: 10vh;
+  align-self: end;
+}
 
+.footer-social {
+  display: flex;
+  justify-content: space-between;
+  width: 65vw;
+  max-width: 350px; /**/
+  padding-bottom: 33px; /**/
+}
+
+.ft-img {
+  width: 42px; /**/
+  height: 42px; /**/
+  transition: 0.5s;
+}
+
+.ft-img:hover {
+  opacity: 0.65;
+  transform: scale(1.08);
+}
+
+.ft-discord {
+  width: 48px; /**/
+  height: 48px; /**/
+}
+
+.footer-t {
+  display: none;
+}
+
+.footer-cr {
+  text-align: center;
+  font-size: 0.625rem;
+  width: 90vw;
+}
+/*Footer Ends*/
 /* signup.css starts */
 .signup-container {
   display: grid;
@@ -283,6 +330,7 @@ a {
 .user-rec-list {
   display: grid;
   font-family: 'Montserrat', sans-serif;
+  min-height: 120vh;
 }
 
 .r-nav {
@@ -872,7 +920,7 @@ a {
   /* homepage.css starts */
   .home-container {
     grid-template-columns: 28.8vw 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto 1fr;
     padding-top: 0;
   }
   .home-nav {
@@ -965,6 +1013,41 @@ a {
     /* left: 1.56vw; */
   }
   /* homepage.css ends*/
+  /*Footer*/
+  footer {
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content min-content;
+    justify-items: unset;
+    padding: 3vh 0 2vh 0; /**/
+    /*Extra*/
+    grid-column: 1/-1;
+    margin-top: 15vh;
+  }
+
+  .footer-t {
+    display: unset;
+    order: -1;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 4.25rem;
+    color: #707070;
+    padding-left: 3.65vw;
+  }
+
+  .footer-social {
+    align-self: center;
+    justify-self: end;
+    width: 10.5vw;
+    min-width: 175px; /**/
+    padding: 10px 3.62vw 0 0;
+  }
+
+  .footer-cr {
+    grid-area: 2/1/3/3;
+    text-align: center;
+    font-size: 1rem;
+    width: unset;
+  }
+  /*Footer Ends*/
   /* signup.css starts */
   .signup-container {
     grid-template-columns: 1fr 1fr;

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import SettingsPage from '../assets/SettingsPage.svg';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Footer from '../layout/Footer';
 
 const ChangePassword = () => {
   const recaptchaRef = React.createRef();
@@ -130,6 +131,7 @@ const ChangePassword = () => {
       <div className='ub-image account-ub-image'>
         <img src={SettingsPage} alt='Sign up or login to trecr' />
       </div>
+      <Footer />
     </div>
   );
 };

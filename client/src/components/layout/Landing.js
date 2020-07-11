@@ -4,6 +4,7 @@ import EllipseIcon from '../assets/Icons/EllipseIcon.svg';
 import HompageImg from '../assets/HompageImg.png';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Footer from './Footer';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -56,6 +57,7 @@ const Landing = ({ isAuthenticated }) => {
       <div className='home-image'>
         <img src={HompageImg} alt='Welcome to trecr' />
       </div>
+      <Footer />
     </div>
   );
 };

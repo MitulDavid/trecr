@@ -12,6 +12,7 @@ import { pinList } from '../../actions/pinnedlist';
 import NavMenu from '../layout/NavMenu';
 import PinIcon from '../assets/Icons/PinIcon.svg';
 import { toast } from 'react-toastify';
+import Footer from '../layout/Footer';
 
 const PublicRecList = ({
   match,
@@ -43,29 +44,27 @@ const PublicRecList = ({
   ) {
     return (
       <Fragment>
-        <Fragment>
-          <div className='verify-container'>
-            <div className='verify-topbar'>
-              <p className='ub-logo verify-logo'>trecr</p>
-              <p className='ub-logo-tag verify-logo'>/ the • rec • room /</p>
-            </div>
-            <div className='verify-msg'>
-              <img
-                src={VerifyErrorIcon}
-                className='verify-icon'
-                alt='InvalidLink'
-              />
-              <div className='verify-heading'>There's nothing here</div>
-              <div className='verify-subhead'>
-                This user either does not exist or doesn't have any
-                recommendations yet.
-              </div>
-              <Link to='/' className='submit-btn verify-btn'>
-                Head Back
-              </Link>
-            </div>
+        <div className='verify-container'>
+          <div className='verify-topbar'>
+            <p className='ub-logo verify-logo'>trecr</p>
+            <p className='ub-logo-tag verify-logo'>/ the • rec • room /</p>
           </div>
-        </Fragment>
+          <div className='verify-msg'>
+            <img
+              src={VerifyErrorIcon}
+              className='verify-icon'
+              alt='InvalidLink'
+            />
+            <div className='verify-heading'>There's nothing here</div>
+            <div className='verify-subhead'>
+              This user either does not exist or doesn't have any
+              recommendations yet.
+            </div>
+            <Link to='/' className='submit-btn verify-btn'>
+              Head Back
+            </Link>
+          </div>
+        </div>
       </Fragment>
     );
   } else if (viewlist !== null) {
@@ -105,6 +104,7 @@ const PublicRecList = ({
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </Fragment>
     );
@@ -112,29 +112,27 @@ const PublicRecList = ({
     //@todo: Add Page Design
     return (
       <Fragment>
-        <Fragment>
-          <div className='verify-container'>
-            <div className='verify-topbar'>
-              <p className='ub-logo verify-logo'>trecr</p>
-              <p className='ub-logo-tag verify-logo'>/ the • rec • room /</p>
-            </div>
-            <div className='verify-msg'>
-              <img
-                src={VerifyErrorIcon}
-                className='verify-icon'
-                alt='InvalidLink'
-              />
-              <div className='verify-heading'>All out of recommendations</div>
-              <div className='verify-subhead'>
-                This user either does not exist or doesn't have any
-                recommendations yet.
-              </div>
-              <Link to='/' className='submit-btn verify-btn'>
-                Head Back
-              </Link>
-            </div>
+        <div className='verify-container'>
+          <div className='verify-topbar'>
+            <p className='ub-logo verify-logo'>trecr</p>
+            <p className='ub-logo-tag verify-logo'>/ the • rec • room /</p>
           </div>
-        </Fragment>
+          <div className='verify-msg'>
+            <img
+              src={VerifyErrorIcon}
+              className='verify-icon'
+              alt='InvalidLink'
+            />
+            <div className='verify-heading'>All out of recommendations</div>
+            <div className='verify-subhead'>
+              This user either does not exist or doesn't have any
+              recommendations yet.
+            </div>
+            <Link to='/' className='submit-btn verify-btn'>
+              Head Back
+            </Link>
+          </div>
+        </div>
       </Fragment>
     );
   }

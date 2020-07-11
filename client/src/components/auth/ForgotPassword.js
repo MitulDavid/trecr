@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import UserBoardingImg from '../assets/UserBoardingImg.png';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Footer from '../layout/Footer';
 
 const ForgotPassword = () => {
   const recaptchaRef = React.createRef();
@@ -95,6 +96,7 @@ const ForgotPassword = () => {
       <div className='ub-image'>
         <img src={UserBoardingImg} alt='Sign up or login to trecr' />
       </div>
+      <Footer />
     </div>
   );
 };

@@ -14,7 +14,8 @@ import ChangeUsername from './components/profile/ChangeUsername';
 import ChangePassword from './components/profile/ChangePassword';
 import PinnedLists from './components/profile/PinnedLists';
 import FindUser from './components/profile/FindUser';
-
+import Attributions from './components/layout/Attributions';
+import NotFound from './components/layout/NotFound';
 //Toast
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -77,7 +78,9 @@ const App = () => {
               path='/user/resetpassword/:token'
               component={ResetPassword}
             />
+            <Route exact path='/attributions' component={Attributions} />
             <Route exact path='/:username' component={PublicRecList} />
+            <Route component={NotFound} />
           </Switch>
         </Fragment>
       </Router>

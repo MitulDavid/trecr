@@ -7,6 +7,7 @@ import UserBoardingImg from '../assets/UserBoardingImg.png';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Footer from '../layout/Footer';
 
 const SignUp = ({ register, isAuthenticated }) => {
   const recaptchaRef = React.createRef();
@@ -131,6 +132,7 @@ const SignUp = ({ register, isAuthenticated }) => {
       <div className='ub-image'>
         <img src={UserBoardingImg} alt='Sign up or login to trecr' />
       </div>
+      <Footer />
     </div>
   );
 };

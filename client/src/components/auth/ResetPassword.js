@@ -5,6 +5,7 @@ import UserBoardingImg from '../assets/UserBoardingImg.png';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Footer from '../layout/Footer';
 
 const ResetPassword = ({ match }) => {
   const recaptchaRef = React.createRef();
@@ -119,6 +120,7 @@ const ResetPassword = ({ match }) => {
       <div className='ub-image'>
         <img src={UserBoardingImg} alt='Sign up or login to trecr' />
       </div>
+      <Footer />
     </div>
   );
 };

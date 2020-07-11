@@ -6,6 +6,8 @@ import { getPinnedList, unpinList } from '../../actions/pinnedlist';
 import Spinner from '../layout/Spinner';
 import NavMenu from '../layout/NavMenu';
 import CloseIcon from '../assets/Icons/CloseIcon.svg';
+import Footer from '../layout/Footer';
+
 const PinnedLists = ({
   user,
   isAuthenticated,
@@ -64,6 +66,7 @@ const PinnedLists = ({
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </Fragment>
     );
@@ -107,6 +110,7 @@ const PinnedLists = ({
             </div>
             <div className='plist-grid'>{pentry}</div>
           </div>
+          <Footer />
         </div>
       </Fragment>
     );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import FindUserImg from '../assets/FindUserImg.svg';
+import Footer from '../layout/Footer';
 
 const FindUser = () => {
   const [formData, setFormData] = useState({
@@ -55,6 +56,7 @@ const FindUser = () => {
       <div className='ub-image find-user-img'>
         <img src={FindUserImg} alt='Find User' />
       </div>
+      <Footer />
     </div>
   );
 };
