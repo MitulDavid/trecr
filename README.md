@@ -10,11 +10,6 @@
 - Alerts using [react-toastify](https://github.com/fkhadra/react-toastify)
   <br/><br/>
 
-## **Bug Reports**
-
-Report bugs at http://discord.gg/9MEzZXB or create an issue here.
-<br/><br/>
-
 ## **Tech Stack**
 
 [<img align="left" alt="Node.js" width="40px" src="https://user-images.githubusercontent.com/49085834/113824366-52d0b000-979d-11eb-87a1-8d8fa067df69.png" />](https://github.com/nodejs/node)
