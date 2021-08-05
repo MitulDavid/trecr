@@ -1,7 +1,10 @@
 {
     "mongoURI": "mongodb://localhost:27017/",
-    "jwtSecret": "Secret",
+    "jwtSecret": "",
     "tmdbKey": "",
     "sgUser": "",
-    "sgKey": ""
+    "sgKey": "",
+    "recaptchaSecret": "",
+    "user-verify": "",
+    "user-resetpassword": ""
 }
