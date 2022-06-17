@@ -2,10 +2,12 @@ import axios from 'axios';
 import { GET_PINNEDLIST, PINNEDLIST_ERROR } from './types';
 
 import { toast } from 'react-toastify';
+import { refreshUser } from '../actions/auth';
 
-//Get current user's reclist
+//Get current user's pinnedlist
 export const getPinnedList = () => async (dispatch) => {
   try {
+    dispatch(refreshUser());
     const res = await axios.get('/api/pinnedlist/me');
     dispatch({
       type: GET_PINNEDLIST,
@@ -22,6 +24,7 @@ export const getPinnedList = () => async (dispatch) => {
 //Pin a list
 export const pinList = (user_id) => async (dispatch) => {
   try {
+    dispatch(refreshUser());
     const res = await axios.post(`/api/pinnedlist/${user_id}`);
 
     toast.success('This list has been added to your pinned lists section');
@@ -47,6 +50,7 @@ export const pinList = (user_id) => async (dispatch) => {
 //Unpin a list
 export const unpinList = (user_id) => async (dispatch) => {
   try {
+    dispatch(refreshUser());
     const res = await axios.delete(`/api/pinnedlist/${user_id}`);
     dispatch({
       type: GET_PINNEDLIST,

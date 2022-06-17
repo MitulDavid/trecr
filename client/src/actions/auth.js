@@ -33,6 +33,24 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
+//Refresh User
+export const refreshUser = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  try {
+    const res = await axios.get('/api/auth');
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data,
+    });
+  } catch (err) {
+    toast.dismiss();
+    toast.error('You have been logged out due to inactivity');
+    dispatch(logout());
+  }
+};
+
 //Register User
 export const register = ({ username, email, password }) => async (dispatch) => {
   const config = {

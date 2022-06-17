@@ -7,10 +7,12 @@ import {
   VIEWLIST_CLENSE,
 } from './types';
 import { toast } from 'react-toastify';
+import { refreshUser } from '../actions/auth';
 
 //Get current user's reclist
 export const getCurrentReclist = () => async (dispatch) => {
   try {
+    dispatch(refreshUser());
     const res = await axios.get('/api/reclist/me');
     dispatch({
       type: GET_RECLIST,
@@ -35,6 +37,7 @@ export const getCurrentReclist = () => async (dispatch) => {
 //Add an entry to your reclist
 export const addToReclist = (mediaType, id) => async (dispatch) => {
   try {
+    dispatch(refreshUser());
     toast.info('Adding entry...', { toastId: 'addingentry', autoClose: 2000 });
     const res = await axios.post(`/api/reclist/${mediaType}/${id}`);
     // toast.isActive('addingentry')
@@ -72,6 +75,7 @@ export const addToReclist = (mediaType, id) => async (dispatch) => {
 //Remove an entry from reclist
 export const removeRecEntry = (r_item_id) => async (dispatch) => {
   try {
+    dispatch(refreshUser());
     toast.info('Removing entry...', {
       toastId: 'removingentry',
       autoClose: 1500,

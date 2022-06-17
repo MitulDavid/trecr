@@ -97,10 +97,12 @@ router.delete('/:user_id', auth, async (req, res) => {
   try {
     const pinnedlist = await PinnedList.findOne({
       user_id: req.user.id,
-    });
+    })
+      .populate('p_list.user', ['username'])
+      .populate('user_id', ['username']);
     //Pull out entry
     const p_item = pinnedlist.p_list.find(
-      (p_item) => p_item.user.toString() === req.params.user_id
+      (p_item) => p_item.user._id.toString() === req.params.user_id
     );
     //Ensure entry exists
     if (!p_item) {

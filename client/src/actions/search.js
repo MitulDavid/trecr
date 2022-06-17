@@ -6,6 +6,7 @@ import {
   SEARCH_ERROR,
   CLEAR_SEARCH_RES,
 } from './types';
+import { refreshUser } from '../actions/auth';
 
 //Get search results
 export const getSearchResult = (query) => async (dispatch) => {
@@ -16,6 +17,7 @@ export const getSearchResult = (query) => async (dispatch) => {
   };
   const body = JSON.stringify({ query });
   try {
+    dispatch(refreshUser());
     dispatch({
       type: SEARCH_ACTIVE,
     });
