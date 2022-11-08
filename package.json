@@ -8,7 +8,8 @@
     "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix client && npm run build --prefix client"
+    "build": "cd client && npm run build",
+    "postinstall": "cd client && npm install"
   },
   "author": "Mitul David",
   "license": "MIT",
@@ -22,7 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.5",
     "nodemailer": "^6.6.3",
-    "nodemailer-sendgrid": "^1.0.3"
+    "nodemailer-sendgrid": "^1.0.3",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
